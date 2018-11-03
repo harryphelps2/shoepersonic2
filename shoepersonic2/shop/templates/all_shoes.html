@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Click for more details...</h1>
+<div class="container-fluid">
+    <div class="row">
+        {% for shoe in all_shoes %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0">
+            <div class="card shoe-card">
+                <img class="card-img-top shoe-card__image" src="{{ MEDIA_URL }}{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
+                <div class="card-body shoe-card__text">
+                    <h5 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h5>
+                    <p class="card-text">{{ shoe.strapline }}</p>
+                </div>
+                <div class="card-footer shoe-card__footer">
+                    <a href="{% url 'shoe_detail' shoe.id %}" class="btn btn-primary btn-danger btn-block">Show me more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

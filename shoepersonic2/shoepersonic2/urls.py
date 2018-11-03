@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import index
+from accounts import urls as account_urls 
+from django.urls import path, re_path, include
 from django.conf import settings
+from shop import urls as shop_urls
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('accounts/', include(account_urls)),
+    path('shop/', include(shop_urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
