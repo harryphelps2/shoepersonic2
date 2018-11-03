@@ -18,17 +18,17 @@
             </div>
         </div>
         <div class="input-group size-chooser-container">
-            <form id="cartform" action="#" method="post">
+            <form id="basketform" action="{% url 'add_to_basket' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div class="input-group-prepend size-chooser">
                     <label class="input-group-text" for="size-chooser">Size</label>
-                    <select form="cartform" required name="size" class="custom-select" id="size-chooser">
+                    <select form="basketform" required name="size" class="custom-select" id="size-chooser">
                         {% for shoe_stock in stock_level %}
                         <option value="{{ shoe_stock.size }}" {% if shoe == current_shoe %}selected{% endif %} >{{ shoe_stock.size }} ({{ shoe_stock.stock }} pairs left)</option>
                         {% endfor %}
                     </select>
                 </div>
-                <button class="btn btn-primary btn-lg btn-danger add-to-cart-button" type="submit" value="1" name="quantity">Add to Basket</button>
+                <button class="btn btn-primary btn-lg btn-danger add-to-basket-button" type="submit" value="1" name="quantity">Add to Basket</button>
             </form>
         </div>
     </div>
