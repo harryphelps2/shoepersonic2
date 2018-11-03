@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from random import choice
+from .models import Profile
 from string import ascii_letters as letters
 
 class UserLoginForm(forms.Form):
@@ -58,3 +59,8 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords must match")
         
         return password2
+    
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('marketing_opt_in','running_club',)
