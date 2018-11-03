@@ -2,10 +2,23 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from random import choice
+from string import ascii_letters as letters
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput) 
+    email = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'Email'}))
+    password = forms.CharField(label="",widget=forms.PasswordInput(attrs={'placeholder':'Password'})) 
+
+    def __init__(self, *args, **kwargs): 
+        super(UserLoginForm, self).__init__(*args, **kwargs) 
+        self.fields['email'].required = True 
+        # remove username
+        # self.fields.pop('username')
+
+    def clean(self):
+        user = User.objects.get(email=self.cleaned_data.get('email'))
+        self.cleaned_data['username'] = user.username
+        return super(UserLoginForm, self).clean()
 
 class UserRegistrationForm(UserCreationForm):
     username = forms.CharField()
@@ -16,6 +29,16 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','email','password1','password2']
+    
+    def __init__(self, *args, **kwargs): 
+        super(UserRegistrationForm, self).__init__(*args, **kwargs) 
+        # remove username
+        self.fields.pop('username')
+
+    def save(self):
+        random = ''.join([choice(letters) for i in range(30)])
+        self.instance.username = random
+        return super(UserRegistrationForm, self).save()
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
