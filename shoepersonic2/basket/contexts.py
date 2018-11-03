@@ -15,7 +15,7 @@ def basket_contents(request):
     for line_id, line_info in basket.items():
         product_id, size = line_id.split("-")
         product = get_object_or_404(Shoe, pk=product_id)
-        quantity = line_info['quantity']
+        quantity = int(line_info['quantity'])
         total += quantity * product.price
         #total += info['quantity'] * product.price
 

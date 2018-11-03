@@ -3,15 +3,16 @@ from django.shortcuts import render, redirect, reverse
 def view_basket(request):
     """A view that renders the cart contents"""
     basket = request.session.get('cart', {})
+    print(basket)
     return render(request, "basket.html")
 
-def add_to_cart(request, id):
+def add_to_basket(request, id):
     """Add a quantity product to cart"""
     # build in check that stops them submitting if they don't select size
-    
     quantity = int(request.POST.get('quantity'))
     size = request.POST.get('size')
     line_id = "{0}-{1}".format(id, size)
+    print(line_id)
 
     basket = request.session.get('basket', {})
 
@@ -23,7 +24,7 @@ def add_to_cart(request, id):
 
     basket[line_id]["quantity"] += quantity
 
-    request.session['basket'] = cart
+    request.session['basket'] = basket
 
     return redirect(reverse('view_basket'))
 
@@ -31,9 +32,11 @@ def adjust_basket(request, id, size):
     """Adjust quantity of the product to the specified amount"""
     quantity = int(request.POST.get('new_quantity'))
     basket = request.session.get('basket', {})
+    print(size)
+    # Size as 1 dp but can't use as a key cos outs it as string
     line_id = "{0}-{1}".format(id, size)
 
-    if quantity > 0:
+    if int(quantity) > 0:
         basket[line_id]["quantity"] = quantity
     else:
         basket.pop(line_id)
