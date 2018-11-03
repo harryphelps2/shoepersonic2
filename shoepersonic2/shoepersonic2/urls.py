@@ -20,6 +20,8 @@ from accounts import urls as account_urls
 from django.urls import path, re_path, include
 from django.conf import settings
 from shop import urls as shop_urls
+from basket import urls as basket_urls
+from checkout import urls as checkout_urls
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -27,4 +29,6 @@ urlpatterns = [
     path('', index, name='index'),
     path('accounts/', include(account_urls)),
     path('shop/', include(shop_urls)),
+    path('basket/', include(basket_urls)),
+    path('checkout/', include(checkout_urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

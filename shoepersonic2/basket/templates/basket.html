@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block page_title %}Basket{% endblock %}
+{% block page_header %}Shopping Basket{% endblock %}
+{% block content %}
+<h2>Cart</h2>
+<div class="cart">
+    {% for item in basket_items  %}
+    <div class="row cart__row">
+        <div class="cart__image">
+            <img src="{{ MEDIA_URL }}{{ item.product.primary_image }}" alt="{{ print.title }}" class="img-thumbnail">
+        </div>
+        <div class="cart__adjust">
+            <h3>{{ item.product.name }} £{{ item.product.price  }}</h3>
+            <div class="quantity-chooser">
+                <button class="minus_update">-</button>
+                <span class="new_quantity" name="new_quantity">{{ item.quantity }}</span>
+                <button class="plus_update">+</button>
+            </div>
+            <p class="cart__size">Size: {{ item.size }}</p>
+            <form action="{% url 'adjust_basket' item.product.id item.size %}" method="post">
+                {% csrf_token %}
+                <button class="adjust-cart" value={{ item.quantity }} type="submit" name="new_quantity">Update Quantity</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="cart-total">
+        <h3>Total: £{{total}}</h3>
+    </div>
+    <div>
+        <button><a href="{% url 'checkout' %}">Go to Checkout</a></button>
+    </div>
+</div>
+{% endblock %}

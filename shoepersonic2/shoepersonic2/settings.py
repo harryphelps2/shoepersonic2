@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'shop',
     'basket',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -144,5 +145,9 @@ STATICFILES_DIRS = (
     )
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = '/media/'
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
