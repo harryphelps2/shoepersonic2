@@ -7,6 +7,6 @@
 <form action="{% url 'contact_details' %}" method="post" role="form">
     {% csrf_token %}
     {{ contact_form|crispy }}
-    <input class="btn btn-block btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Next">
+    <input class="btn btn-block btn-primary" type="submit" value="Next">
 </form>
 {% endblock %}
