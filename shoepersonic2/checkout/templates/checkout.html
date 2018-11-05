@@ -4,7 +4,7 @@
 {% block page_header %}Checkout{% endblock %}
 {% block content %}
 <h2>Checkout</h2>
-<form action="{% url 'checkout' %}" method="post" id="payment-form" role="form">
+<form action="{% url 'submit_order' %}" method="post" id="payment-form" role="form">
     {% csrf_token %}
     {{ order_form|crispy }}
     <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">

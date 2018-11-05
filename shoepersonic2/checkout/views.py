@@ -4,8 +4,8 @@ from .forms import ContactDetailsForm, DeliveryForm, OrderForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils import timezone
-from shop.models import Shoe
-from .models import OrderLineItem
+from shop.models import Shoe, Stock
+from .models import OrderLineItem, Order
 from shoepersonic2 import settings
 import stripe
 
@@ -16,7 +16,11 @@ def contact_details(request):
     """Collect email and running club and add to session"""
     user = request.user
     if user.is_authenticated:
-        contact_details = {'email': user.email, 'running_club': user.profile.running_club }
+        contact_details = {
+            'email': user.email, 
+            'running_club': user.profile.running_club 
+            }
+        contact_form = ContactDetailsForm(request.POST or contact_details)
         if request.method == "POST":
             if contact_form.is_valid():
                 request.session['email'] = contact_form.cleaned_data['email']
@@ -28,8 +32,8 @@ def contact_details(request):
             'running_club' : request.session.get('running_club', None)
             }
         contact_form = ContactDetailsForm(request.POST or contact_details)
+        print(contact_details)
         if request.method == "POST":
-            print(contact_form)
             if contact_form.is_valid():
                 request.session['email'] = contact_form.cleaned_data['email']
                 request.session['running_club'] = contact_form.cleaned_data['running_club']
@@ -90,55 +94,67 @@ def delivery_details(request):
 
 def submit_order(request):
     """Make payment"""
-    # if request.method=="POST":
-    #     order_form = OrderForm(request.POST)
-    #     if order_form.is_valid():
-    #         order = order_form.save(commit=False)
-    #         order.date = timezone.now()
-    #         order.user = request.user.id
-    #         order.save()
-
-    #         basket = request.session.get('basket', {})
-    #         total = 0
-    #         for line_id, line_info in basket.items():
-    #             product_id, size = line_id.split("-")
-    #             product = get_object_or_404(Shoe, pk=product_id)
-    #             stock_level = get_object_or_404(Stock, size=size, shoe_model=product_id)
-    #             quantity = line_info['quantity']
-    #             if stock_level.stock < quantity:
-    #                 messages.error("Oh no there's only {0} left! Please adjust the quantity in your cart.").format(quantity)
-    #                 return redirect(reverse('view_basket'))
-    #             else:
-    #                 stock_level.stock -= quantity
-    #                 stock_level.save()
-    #             total += quantity * product.price
-    #             order_line_item = OrderLineItem(
-    #                 order = order,
-    #                 product = product,
-    #                 quantity = quantity,
-    #                 size = size
-    #             )
-    #             order_line_item.save()
-            
-    #         try:
-    #             token = request.POST['stripeToken'] 
-    #             charge = stripe.Charge.create(
-    #                 amount=int(total*100),
-    #                 currency='gbp',
-    #                 description=request.user.email,
-    #                 source=token,
-    #             )
-    #         except stripe.error.CardError:
-    #             messages.error(request, "Your card was declined!")
-            
-    #         if charge.paid:
-    #             messages.success(request, "You have successfully paid!")
-    #             request.session['basket'] = {}
-    #             return redirect(reverse('index'))
-    #         else:
-    #             messages.error(request, "Unable to take payment.")
-    #     else:
-    #         messages.error(request, "Unable to take payment on that card")
-    # else:
-    #     order_form = OrderForm()
-    # return render(request, 'checkout.html', {'order_form':order_form})
+      # order_form = OrderForm(request.POST or order_details)
+    
+    if request.method=="POST":
+        order_details = {
+            'email' : request.session.get('email', None), 
+            'running_club' : request.session.get('running_club', None),
+            'first_name' : request.session.get('first_name', None), 
+            'last_name' : request.session.get('last_name', None),
+            'address_line_1' : request.session.get('address_line_1', None),
+            'address_line_2' : request.session.get('address_line_2', None), 
+            'address_line_3' : request.session.get('address_line_3', None), 
+            'town_or_city' : request.session.get('town_or_city', None), 
+            'county' : request.session.get('county', None), 
+            'postcode' : request.session.get('postcode', None)    
+            }  
+        order = OrderForm(order_details).save(commit=False)
+        order.date = timezone.now()
+        user = request.user
+        if user.is_authenticated:
+            order.user = request.user
+        order.save()
+        
+        basket = request.session.get('basket', {})
+        total = 0
+        for line_id, line_info in basket.items():
+            product_id, size = line_id.split("-")
+            product = get_object_or_404(Shoe, pk=product_id)
+            stock_level = get_object_or_404(Stock, size=size, shoe_model=product_id)
+            quantity = line_info['quantity']
+            if stock_level.stock < quantity:
+                messages.error("Oh no there's only {0} left! Please adjust the quantity in your cart.").format(quantity)
+                return redirect(reverse('view_basket'))
+            else:
+                stock_level.stock -= quantity
+                stock_level.save()
+            total += quantity * product.price
+            order_line_item = OrderLineItem(
+                order = order,
+                product = product,
+                quantity = quantity,
+                size = size
+            )
+            order_line_item.save()
+        
+        try:
+            token = request.POST['stripeToken'] 
+            charge = stripe.Charge.create(
+                amount=int(total*100),
+                currency='gbp',
+                description=request.session.get('email', None),
+                source=token,
+            )
+        except stripe.error.CardError:
+            messages.error(request, "Your card was declined!")
+        
+        if charge.paid:
+            messages.success(request, "You have successfully paid!")
+            request.session['basket'] = {}
+            return redirect(reverse('index'))
+        else:
+            messages.error(request, "Unable to take payment.")
+    else:
+        messages.error(request, "Unable to take payment on that card")
+    return render(request, 'checkout.html')
