@@ -8,6 +8,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     marketing_opt_in = models.BooleanField(null=False, blank=False, default=False)
     running_club = models.CharField(max_length=50, null=True, blank=True, default=None) 
+    address_line_1 = models.CharField(max_length=100, null=True, blank=True)
+    address_line_2 = models.CharField(max_length=100, null=True, blank=True)
+    address_line_3 = models.CharField(max_length=100, null=True, blank=True) 
+    town_or_city = models.CharField(max_length=50, null=True, blank=True)
+    county = models.CharField(max_length=50, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+
 
     def __str__(self):
         return self.user.email
