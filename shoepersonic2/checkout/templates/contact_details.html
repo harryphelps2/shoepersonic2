@@ -3,10 +3,35 @@
 {% block page_title %}Checkout{% endblock %}
 {% block page_header %}Checkout{% endblock %}
 {% block content %}
-<h2>Checkout</h2>
-<form action="{% url 'contact_details' %}" method="post" role="form">
+<nav class="nav nav-pills nav-fill">
+    <a class="nav-item nav-link active" href="{% url 'contact_details' %}">Contact <i class="fas fa-arrow-right"></i></a>
+    <a class="nav-item nav-link" href="{% url 'delivery_details' %}">Delivery</a>
+    <a class="nav-item nav-link" href="{% url 'card_details' %}">Payment</a>
+</nav>
+<div class="checkout-cart">
+    <h5>Your cart</h5>    
+    <ul class="list-group">
+    {% for item in basket_items %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <h6>{{ item.product.name }}</h6>
+            </div>
+            <div>
+                <h6>£{{ item.product.price }}</h6> 
+            </div>
+        </li>
+        {% endfor %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <h6>Total: <span>£{{ total }}</span></h6>
+            </div>
+        </li>
+    </ul>
+</div>
+<form class="contact-details" action="{% url 'contact_details' %}" method="post" role="form">
+    <h5>Contact details</h5>
     {% csrf_token %}
     {{ contact_form|crispy }}
-    <input class="btn btn-block btn-primary" type="submit" value="Next">
+    <input class="btn btn-block btn-danger btn-primary btn-lg" type="submit" value="Next">
 </form>
 {% endblock %}

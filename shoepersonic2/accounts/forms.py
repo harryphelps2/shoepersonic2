@@ -64,3 +64,4 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('marketing_opt_in','running_club',)
+

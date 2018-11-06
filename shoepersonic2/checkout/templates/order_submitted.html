@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block page_title %}Thank you!{% endblock %}
+{% block content %}
+<h2>Thank you!!</h2>
+<p>We should do this again some time</p>
+{% if user.is_authenticated %}
+    <form>
+        <div class="form-check">
+            {% if not marketing_opted_in %}
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Let me know when you do the next review
+                </label>
+            {% endif %}
+            {% if details_to_update %}
+                <p>Do you want to save your new details?</p>
+                <button>Save</button>
+            {% endif %} 
+        </div>
+    </form>
+{% else %}
+<form>
+    {{ registration_form|crispy }}
+    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">
+        Let me know when you do the next review
+    </label>
+    <button>Save details for next time</button>
+</form>
+{% endif %}
+{% endblock %}

@@ -174,4 +174,23 @@
   margin-left: 2%;
 }
 
+.checkout-cart {
+  margin: 5%;
+}
+
+.contact-details {
+  margin: 5%;
+}
+
+input {
+  background-color: white;
+  height: 40px;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #636569;
+  margin-bottom: 10%;
+}
+
 /*# sourceMappingURL=styles.css.map */

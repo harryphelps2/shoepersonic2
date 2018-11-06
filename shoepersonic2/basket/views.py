@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, reverse
 def view_basket(request):
     """A view that renders the cart contents"""
     basket = request.session.get('cart', {})
-    print(basket)
     return render(request, "basket.html")
 
 def add_to_basket(request, id):
@@ -12,7 +11,6 @@ def add_to_basket(request, id):
     quantity = int(request.POST.get('quantity'))
     size = request.POST.get('size')
     line_id = "{0}-{1}".format(id, size)
-    print(line_id)
 
     basket = request.session.get('basket', {})
 
@@ -32,8 +30,6 @@ def adjust_basket(request, id, size):
     """Adjust quantity of the product to the specified amount"""
     quantity = int(request.POST.get('new_quantity'))
     basket = request.session.get('basket', {})
-    print(size)
-    # Size as 1 dp but can't use as a key cos outs it as string
     line_id = "{0}-{1}".format(id, size)
 
     if int(quantity) > 0:

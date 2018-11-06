@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import ContactDetailsForm, DeliveryForm, OrderForm
+from accounts.forms import UserRegistrationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils import timezone
 from shop.models import Shoe, Stock
 from .models import OrderLineItem, Order
+
 from shoepersonic2 import settings
 import stripe
 
@@ -66,7 +68,7 @@ def delivery_details(request):
                 request.session['town_or_city'] = delivery_form.cleaned_data['town_or_city']
                 request.session['county'] = delivery_form.cleaned_data['county']
                 request.session['postcode'] = delivery_form.cleaned_data['postcode']
-                return redirect(reverse('submit_order'))
+                return redirect(reverse('card_details'))
     else:
         delivery_details = {
             'first_name' : request.session.get('first_name', None), 
@@ -89,8 +91,13 @@ def delivery_details(request):
                 request.session['town_or_city'] = delivery_form.cleaned_data['town_or_city']
                 request.session['county'] = delivery_form.cleaned_data['county']
                 request.session['postcode'] = delivery_form.cleaned_data['postcode']
-                return redirect(reverse('submit_order'))
+                return redirect(reverse('card_details'))
     return render(request, 'delivery_details.html', {'delivery_form': delivery_form})
+
+def card_details(request):
+    """Enter card details"""
+    return render(request, "checkout.html")
+
 
 def submit_order(request):
     """Make payment"""
@@ -152,9 +159,79 @@ def submit_order(request):
         if charge.paid:
             messages.success(request, "You have successfully paid!")
             request.session['basket'] = {}
-            return redirect(reverse('index'))
+            return redirect(reverse('order_submitted'))
         else:
             messages.error(request, "Unable to take payment.")
     else:
         messages.error(request, "Unable to take payment on that card")
     return render(request, 'checkout.html')
+
+def order_submitted(request):
+    """Congratulations and save details for next time"""
+    # If the user is authenticated
+    user = request.user
+    profile_details = ['first_name', 'last_name', 'running_club']
+    logged_in = user.is_authenticated
+    details_to_update = False
+    marketing_opted_in = False
+    registration_form = UserRegistrationForm()
+    if user.is_authenticated:
+        order_details = {
+            'first_name' : request.session.get('first_name', None), 
+            'last_name' : request.session.get('last_name', None),
+            'running_club' : request.session.get('running_club', None),
+            'address_line_1' : request.session.get('address_line_1', None),
+            'address_line_2' : request.session.get('address_line_2', None), 
+            'address_line_3' : request.session.get('address_line_3', None), 
+            'town_or_city' : request.session.get('town_or_city', None), 
+            'county' : request.session.get('county', None), 
+            'postcode' : request.session.get('postcode', None)    
+            }  
+        saved_details = {
+            'first_name': user.first_name, 
+            'last_name': user.last_name,
+            'running_club' : user.profile.running_club,
+            'address_line_1': user.profile.address_line_1,
+            'address_line_2': user.profile.address_line_2,
+            'address_line_3 ': user.profile.address_line_3,
+            'town_or_city': user.profile.town_or_city,
+            'county': user.profile.county,
+            'postcode': user.profile.postcode
+             }
+        for field in profile_details:
+            if order_details[field] != saved_details[field]:
+                details_to_update = True
+                break
+        marketing_opted_in = user.profile.marketing_opt_in
+    else:
+        if request.method=="POST":
+            registration_form = UserRegistrationForm(request.POST)
+
+            if registration_form.is_valid():
+                registration_form.save()
+                user = auth.authenticate(username=request.POST['email'],
+                                        password=request.POST['password1'])                  
+                if user:
+                    auth.login(user=user, request=request)
+                    messages.success(request, "You have successfully registered")
+                    return redirect(reverse('index'))
+                else:
+                    messages.error(request, "Unable to register your account at this time")
+        else:
+            registration_form = UserRegistrationForm()
+        return render(request, 'order_submitted.html', {'logged_in': logged_in, 'details_to_update': details_to_update, 'marketing_opted_in': marketing_opted_in, 'registration_form': registration_form})
+    return render(request, 'order_submitted.html', {'logged_in': logged_in, 'details_to_update': details_to_update, 'marketing_opted_in': marketing_opted_in, 'registration_form': registration_form})
+            
+    #   If delvery details are the same as those saved:
+    #       If they are check that marketing is false
+    #           marketing tickbox
+    #       else:
+    #           see you again soon
+    #   else:
+    #       if marketing is false:
+    #           offer checkbox and update details
+    #       else:
+    #           update details
+    #else:
+    #   password and save details for later
+
