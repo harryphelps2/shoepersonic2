@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import ContactDetailsForm, DeliveryForm, OrderForm
-from accounts.forms import UserRegistrationForm
+from accounts.forms import UserRegistrationForm, ProfileForm
 from django.contrib.auth.models import User
-from django.contrib import messages
+from django.contrib import auth, messages
 from django.utils import timezone
 from shop.models import Shoe, Stock
 from .models import OrderLineItem, Order
@@ -174,7 +174,6 @@ def order_submitted(request):
     logged_in = user.is_authenticated
     details_to_update = False
     marketing_opted_in = False
-    registration_form = UserRegistrationForm()
     if user.is_authenticated:
         order_details = {
             'first_name' : request.session.get('first_name', None), 
@@ -204,34 +203,37 @@ def order_submitted(request):
                 break
         marketing_opted_in = user.profile.marketing_opt_in
     else:
+        registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})
+        profile_form = ProfileForm(request.POST or None, initial={
+            'first_name' : request.session['first_name'], 
+            'last_name' : request.session['last_name'],
+            'running_club' : request.session['running_club'],
+            'address_line_1' : request.session['address_line_1'],
+            'address_line_2' : request.session['address_line_2'], 
+            'address_line_3' : request.session['address_line_3'], 
+            'town_or_city' : request.session['town_or_city'], 
+            'county' : request.session['county'], 
+            'postcode' : request.session['postcode'] 
+        })
         if request.method=="POST":
             registration_form = UserRegistrationForm(request.POST)
-
             if registration_form.is_valid():
                 registration_form.save()
                 user = auth.authenticate(username=request.POST['email'],
                                         password=request.POST['password1'])                  
                 if user:
                     auth.login(user=user, request=request)
+                    profile_form = ProfileForm(request.POST, instance=request.user.profile)
+                    if profile_form.is_valid():
+                        profile_form.save()
                     messages.success(request, "You have successfully registered")
                     return redirect(reverse('index'))
                 else:
                     messages.error(request, "Unable to register your account at this time")
-        else:
-            registration_form = UserRegistrationForm()
-        return render(request, 'order_submitted.html', {'logged_in': logged_in, 'details_to_update': details_to_update, 'marketing_opted_in': marketing_opted_in, 'registration_form': registration_form})
-    return render(request, 'order_submitted.html', {'logged_in': logged_in, 'details_to_update': details_to_update, 'marketing_opted_in': marketing_opted_in, 'registration_form': registration_form})
-            
-    #   If delvery details are the same as those saved:
-    #       If they are check that marketing is false
-    #           marketing tickbox
-    #       else:
-    #           see you again soon
-    #   else:
-    #       if marketing is false:
-    #           offer checkbox and update details
-    #       else:
-    #           update details
-    #else:
-    #   password and save details for later
-
+    return render(request, 'order_submitted.html', {
+        'logged_in': logged_in, 
+        'details_to_update': details_to_update, 
+        'marketing_opted_in': marketing_opted_in, 
+        'registration_form': registration_form,
+        'profile_form' : profile_form
+        })

@@ -211,13 +211,22 @@
     margin: 5%;
 }
 
-input{
-    background-color: white;
-    height: 40px;
-    width: 100%;
-    padding: 1.0rem 1.2rem;
-    border-radius: 4px;
-    border: 1px solid transparent;
-    box-shadow: 0 1px 3px 0 #636569;
-    margin-bottom: 10%;
+// nest this in class to stop checkbox appearing in as form
+.contact-details-form{
+    input{
+        background-color: white;
+        height: 40px;
+        width: 100%;
+        padding: 1.0rem 1.2rem;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #636569;
+        margin-bottom: 3%;
+    }
+}
+
+.next-button{
+    margin-top: 5%;
+    margin-bottom: 20%;
+    background-image: linear-gradient(rgb(241, 175, 175), red) ;
 }

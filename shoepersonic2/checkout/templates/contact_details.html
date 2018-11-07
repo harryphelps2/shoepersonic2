@@ -28,10 +28,10 @@
         </li>
     </ul>
 </div>
-<form class="contact-details" action="{% url 'contact_details' %}" method="post" role="form">
+<form class="contact-details-form" action="{% url 'contact_details' %}" method="post" role="form">
     <h5>Contact details</h5>
     {% csrf_token %}
     {{ contact_form|crispy }}
-    <input class="btn btn-block btn-danger btn-primary btn-lg" type="submit" value="Next">
+    <button class="btn btn-block btn-danger btn-primary btn-lg next-button" type="submit">Next</button>
 </form>
 {% endblock %}

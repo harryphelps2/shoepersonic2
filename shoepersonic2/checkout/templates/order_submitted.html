@@ -20,13 +20,15 @@
         </div>
     </form>
 {% else %}
-<form>
+<form method="post" id="save_new_user" action="{% url 'order_submitted' %}">
+    {% csrf_token %}
     {{ registration_form|crispy }}
-    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+    {{ profile_form|crispy }}
+    <input class="form-check-input" type="checkbox" value="" form="save_new_user">
     <label class="form-check-label" for="defaultCheck1">
         Let me know when you do the next review
     </label>
-    <button>Save details for next time</button>
+    <button type="submit">Save details for next time</button>
 </form>
 {% endif %}
 {% endblock %}

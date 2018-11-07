@@ -63,5 +63,4 @@ class UserRegistrationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('marketing_opt_in','running_club',)
-
+        fields = ('marketing_opt_in','running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'postcode')
