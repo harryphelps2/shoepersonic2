@@ -46,13 +46,17 @@
                 </div>
             </nav>
             {% if messages %}
-                <ul class="alert alert-danger messages" role="alert">
-                    {% for message in messages %}
-                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-                    {% endfor %}
-                </ul>
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
             {% endif %}
             {% block content %}
+            <!-- Content here -->
             {% endblock %}
         </div>
         <footer>
