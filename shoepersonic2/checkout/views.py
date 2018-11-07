@@ -101,8 +101,6 @@ def card_details(request):
 
 def submit_order(request):
     """Make payment"""
-      # order_form = OrderForm(request.POST or order_details)
-    
     if request.method=="POST":
         order_details = {
             'email' : request.session.get('email', None), 
@@ -124,6 +122,9 @@ def submit_order(request):
         order.save()
         
         basket = request.session.get('basket', {})
+        if not basket:
+            messages.error(request, "Your basket is empty!")
+            return redirect(reverse('all_shoes'))
         total = 0
         for line_id, line_info in basket.items():
             product_id, size = line_id.split("-")
