@@ -174,6 +174,8 @@ def order_submitted(request):
     logged_in = user.is_authenticated
     details_to_update = False
     marketing_opted_in = False
+    registration_form = UserRegistrationForm()
+    profile_form = ProfileForm()
     if user.is_authenticated:
         order_details = {
             'first_name' : request.session.get('first_name', None), 
