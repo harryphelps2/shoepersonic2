@@ -8,8 +8,8 @@
     <a class="nav-item nav-link" href="{% url 'delivery_details' %}">Delivery</a>
     <a class="nav-item nav-link" href="{% url 'card_details' %}">Payment</a>
 </nav>
-<div class="checkout-cart">
-    <h5>Your cart</h5>    
+<div class="checkout-basket">
+    <h5>Your basket</h5>    
     <ul class="list-group">
     {% for item in basket_items %}
         <li class="list-group-item d-flex justify-content-between">
@@ -32,6 +32,6 @@
     <h5>Contact details</h5>
     {% csrf_token %}
     {{ contact_form|crispy }}
-    <button class="btn btn-block btn-danger btn-primary btn-lg next-button" type="submit">Next</button>
+    <button class="btn btn-block btn-primary btn-lg btn-danger next-button" type="submit">Next</button>
 </form>
 {% endblock %}

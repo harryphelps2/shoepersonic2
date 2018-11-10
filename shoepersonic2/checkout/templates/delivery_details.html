@@ -8,9 +8,29 @@
     <a class="nav-item nav-link active" href="{% url 'delivery_details' %}">Delivery <i class="fas fa-arrow-right"></i></a>
     <a class="nav-item nav-link" href="{% url 'card_details' %}">Payment</a>
 </nav>
+<div class="checkout-basket">
+    <h5>Your basket</h5>    
+    <ul class="list-group">
+    {% for item in basket_items %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <h6>{{ item.product.name }}</h6>
+            </div>
+            <div>
+                <h6>£{{ item.product.price }}</h6> 
+            </div>
+        </li>
+        {% endfor %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <h6>Total: <span>£{{ total }}</span></h6>
+            </div>
+        </li>
+    </ul>
+</div>
 <form action="{% url 'delivery_details' %}" method="post" id="payment-form" role="form">
     {% csrf_token %}
     {{ delivery_form|crispy }}
-    <input class="btn btn-block btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Next">
+    <input class="btn btn-block btn-primary btn-lg btn-danger next-button" id="submit_payment_btn" name="commit" type="submit" value="Next">
 </form>
 {% endblock %}

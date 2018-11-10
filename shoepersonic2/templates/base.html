@@ -9,38 +9,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:600i" rel="stylesheet">
-        <link rel="stylesheet" href="../../../static/css/styles.css"> 
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="/../static/css/styles.css"> 
     </head>
     <body>
         <div class="container-fluid">
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="nav-item nav-link nav-banner__link" href="#">Returns</a>
+                <a class="nav-item nav-link nav-banner__link" href="#">Delivery</a>
+                <a class="navbar-brand nav-banner__brand" href="{% url 'index' %}">Shoepersonic <i class="fas fa-fighter-jet"></i></a>
+                {% if user.is_authenticated %}                      
+                <a class="nav-item nav-link nav-banner__link" href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                <a class="nav-item nav-link nav-banner__link" href="{% url 'login' %}">Account</a>
+                {% endif %}
+                <a class="nav-item nav-link nav-banner__basket" href="{% url 'view_basket' %}"><i class="fas fa-shopping-basket"></i></a>
+            </nav>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{% url 'index' %}">Shoepersonic <i class="fas fa-fighter-jet"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse nav-dropdown" id="navbarNav">
+                    <ul class="navbar-nav nav-dropdown__list">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'all_shoes' %}"><i class="fas fa-shoe-prints"></i></i>Shoes</a>
+                            <a class="nav-link nav-dropdown__link" href="{% url 'all_shoes' %}">Shoes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="far fa-star"></i> Reviews</a>
+                            <a class="nav-link nav-dropdown__link" href="#">Reviews</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About us</a>
+                            <a class="nav-link nav-dropdown__link" href="#">About us</a>
                         </li>
-                        {% if user.is_authenticated %}                      
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-                        </li>
+                        {% if user.is_authenticated %}  
+                            <li class="nav-item">
+                                <a class="nav-link nav-dropdown__account" href="{% url 'logout' %}">Log out</a>
+                            </li>                    
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
-                        </li>                            
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register' %}">Sign up</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-dropdown__account" href="{% url 'login' %}">Account</a>
+                            </li>
                         {% endif %}
                     </ul>
                 </div>
@@ -101,17 +108,11 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col">
+                    <div class="footer__email">
                         <h3>Stay connected</h3>
                         <p>Sign up to our email list:</p>
                         <input type="email" name="mailinglist" id="">
                     </div>
-                </div>
-                <div class="row footer__social-media">
-                    <i class="fab fa-strava"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
                 </div>
             </div>
         </footer>

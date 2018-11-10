@@ -1,205 +1,309 @@
+/* Variables */
+$title-font: 'Montserrat', sans-serif;
+$text-font: 'Open Sans', sans-serif;
+$primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
+
 /* General */
+
 .body, html {
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
 }
-// Footer
 
-.footer{
-    background-color: dimgray;
-    color: white;
-
-    a{
-        color: inherit;
+/* Navbar */
+// Top banner styling
+.nav-banner{
+    &__link{
+        display: none;
+        text-decoration: none;
     }
-    &__links{
-        padding-top: 1%;
-        margin-top: 7%;
-        margin-bottom: 1%;
+    &__brand{
+        font-family: $title-font;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1.2;
     }
-    &__social-media{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding-bottom: 2%;
-        .fab{
-            font-size: 50px;
+    &__basket{
+        color: white;
+        font-size: 1.3rem;
+    }
+}
+@media (min-width: 576px) {
+    .nav-banner{
+        &__link{
+            display: inline;
+            font-family: $text-font;
+            font-size: 1.1rem;
+            line-height: 2.0rem;
+            color: white;
+        }
+        &__brand{
+            font-family: $title-font;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        &__basket{
+            color: white;
+            font-size: 1.5rem;
         }
     }
 }
-  
-  /* Stripe */
-    .StripeElement {
-        display: block;
-        background-color: white;
-        height: 40px;
-        width: 80%;
-        margin-bottom: 5%;
-        padding: 1.0rem 1.2rem;
-        border-radius: 4px;
-        border: 1px solid transparent;
-        box-shadow: 0 1px 3px 0 #e6ebf1;
-        -webkit-transition: box-shadow 150ms ease;
-        transition: box-shadow 150ms ease;
-    }
-    
-    .StripeElement--focus {
-        box-shadow: 0 1px 3px 0 #cfd7df;
-    }
-    
-    .StripeElement--invalid {
-        border-color: #fa755a;
-    }
-    
-    .StripeElement--webkit-autofill {
-        background-color: #fefde5 !important;
-    }
 
-    #submit_payment_btn{
-        display: block;
-    }
+// Bottom banner and dropdown styling
+@media (min-width: 576px) {
+    .nav-dropdown{
+        display: flex;
+        justify-content: space-around;
 
-// Home page
-.front-page-image{
-    height: 60rem;
+        &__link{
+            font-family: $text-font;
+            font-size: 1.1rem;
+            line-height: 2.0rem;
+            width: 100%;
+            margin-left: 5.0rem;
+            margin-right: 5.0rem;
+
+        }
+
+        &__account{
+            display: none;
+        }
+    }
+}
+
+/* Home page */
+
+.front-page-hero-image{
+    height: 30rem;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     position: relative;
 }
 
-.front-page-text{
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -100%);
-        color: white;
+@media (min-width: 576px) {
+    .front-page-hero-image{
+        height: 65rem;
+    }
+}
 
-        &__title{
-            font-size: 2.5rem;
-            font-weight: 200;
-            line-height: 1.2;
+
+.front-page-hero-text{
+
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    color: white;
+    
+    &__title{
+        font-family: $title-font;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    &__strapline{
+        font-family: $text-font;
+        font-size: 1.1rem;
+    }
+    &__button{
+        font-size: 1.5rem;
     }
 }
 @media (min-width: 576px) { 
-    .front-page-text{
+    .front-page-hero-text{
         &__title{
-            font-size: 3.5rem;
-            font-weight: 300;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            font-weight: bold;
+            line-height: 2.2;
+        }
+        &__strapline{
+            font-family: $text-font;
+            font-size: 2.1rem;
+        }
+        &__button{
+            margin-top: 10%;
+            font-size: 2.5rem;
         }
     }
 }
 
-  /* All shoes page */
+.front-page-info{
+    margin: 10%;
+    margin-bottom: 30%;
 
-  .shoe-card{
-      padding: 1%;
-      margin: 2%;
-  }
- 
+    &__title{
+        font-family: $title-font;
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    &__item{
+        display: flex;
+        justify-content: center;
+        font-family: $text-font;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-align: center;
+        padding-top: 2.0rem;
+        i{
+            margin-right: 5%;
+            margin-bottom: 5%;
+            font-size: 2.5rem;
+        }
+    }
+    .alot{
+        width: 100%;
+        padding-top: 1.0rem;
+    }
+}
 
-  /* Shoe Detail Page */
+@media (min-width: 576px) { 
+    .front-page-info{
+        margin: 10%;
+        margin-bottom: 30%;
+    
+        &__title{
+            font-family: $title-font;
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        &__item{
+            display: flex;
+            justify-content: center;
+            font-family: $text-font;
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-align: center;
+            padding-top: 2.0rem;
+            i{
+                margin-right: 5%;
+                margin-bottom: 5%;
+                font-size: 2.5rem;
+            }
+            .alot{
+                padding-top: 0.2rem;
+            }
+        }
+    }
+}
 
-  .shoe-detail{
-      display: block;
-      width: 100%;
 
-      &__title{
-          margin: auto;
-      }
 
-      &__image{
-          width: 100%;
-          @media (min-width: 576px) {
-              display: inline-block;
-              width: 60%;
-          }
 
-      }
-  }
+/* All Shoes Page */
 
-  .add-to-cart{
-      display: block;
-      width: 100%;
-      margin: 5%;
+.shoe-card{
+    padding: 1%;
+    margin: 2%;
+}
 
-      @media (min-width: 576px) {
+
+/* Shoe Detail Page */
+
+.shoe-detail{
+    display: block;
+    width: 100%;
+    
+    &__title{
+        margin: auto;
+    }
+    
+    &__image{
+        width: 100%;
+        @media (min-width: 576px) {
+            display: inline-block;
+            width: 60%;
+        }
+        
+    }
+}
+
+.add-to-cart{
+    display: block;
+    width: 100%;
+    margin: 5%;
+    
+    @media (min-width: 576px) {
         display: inline-block;
         width: 30%;
         margin: 0;
         padding-left: 10%;
-   }
-  }
-
-  .price-and-quantity-container{
-
-      @media (min-width: 576px) {
-         width: 100%;
     }
+}
 
-
-
+.price-and-quantity-container{
+    
+    @media (min-width: 576px) {
+        width: 100%;
+    }
+        
     .price {
         display: inline-block;
         width: 40%;
         padding-left: 4%;
-        }
-
+    }
+    
     .quantity-chooser{
         display: inline-block;
         width: 40%;
         min-width: 7.0rem;
-
+        
         button{
-        height: 2.0rem;
-        width: 2.0rem;
-        color: black;
-        border-color: black;
-        border-radius: 0.2rem;
+            height: 2.0rem;
+            width: 2.0rem;
+            color: black;
+            border-color: black;
+            border-radius: 0.2rem;
         }
-
+        
         .quantity{
             font-size: larger;
             margin: 5%;
         }
     }
+}
+
+.size-chooser-container{
+    margin: 5%;
+}
+
+.size-chooser{
+    margin-bottom: 5%;
+}
+
+.add-to-cart-button{
+    margin-top: 5%;
+    width: 100%
+}
+
+
+
+/* Profile page */
+
+.profile{
+    &__picture{
+        height: auto;
+        width: 10%;
     }
+}
 
-  .size-chooser-container{
-      margin: 5%;
-  }
+/* Basket */
 
-  .size-chooser{
-      margin-bottom: 5%;
-  }
-
-  .add-to-cart-button{
-      margin-top: 5%;
-      width: 100%
-  }
-
-
-
-//   Profile page
-
-  .profile{
-      &__picture{
-          height: auto;
-          width: 10%;
-      }
-  }
-
-//   Cart
-
-.cart{
+.basket{
     &__row{
         padding: 2% 5%;
     }
     &__image{
         width: 10rem;
-      // background-image: url("{{ MEDIA_URL }}{{ shoe.primary_image }}")
     }
     &__adjust{
         width: 80%;
@@ -208,7 +312,7 @@
 }
 
 // Checkout contact details
-.checkout-cart{
+.checkout-basket{
     margin: 5%;
 }
 
@@ -216,7 +320,6 @@
     margin: 5%;
 }
 
-// nest this in class to stop checkbox appearing in as form
 .contact-details-form{
     input{
         background-color: white;
@@ -229,9 +332,57 @@
         margin-bottom: 3%;
     }
 }
+/* Stripe */
+.StripeElement {
+    display: block;
+    background-color: white;
+    height: 40px;
+    width: 80%;
+    margin-bottom: 5%;
+    padding: 1.0rem 1.2rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+#submit_payment_btn{
+    display: block;
+}
 
 .next-button{
     margin-top: 5%;
     margin-bottom: 20%;
-    background-image: linear-gradient(rgb(241, 175, 175), red) ;
+    background-image: $primary-button-red;
+}
+
+
+// Footer
+
+.footer{
+    background-color: dimgray;
+    color: white;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    a{
+        color: inherit;
+    }
+    &__email{
+        display: block;
+        width: 100%;
+        margin: 5%;
+    }
 }

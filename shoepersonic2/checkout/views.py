@@ -132,7 +132,7 @@ def submit_order(request):
             stock_level = get_object_or_404(Stock, size=size, shoe_model=product_id)
             quantity = line_info['quantity']
             if stock_level.stock < quantity:
-                messages.error("Oh no there's only {0} left! Please adjust the quantity in your cart.").format(quantity)
+                messages.error(request, "Oh no there's only {0} left! Please adjust the quantity in your cart.".format(quantity))
                 return redirect(reverse('view_basket'))
             else:
                 stock_level.stock -= quantity
@@ -171,41 +171,13 @@ def order_submitted(request):
     """Congratulations and save details for next time"""
     # If the user is authenticated
     user = request.user
-    profile_details = ['first_name', 'last_name', 'running_club']
+    profile_details = ['first_name', 'last_name', 'running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'poscode']
     logged_in = user.is_authenticated
     details_to_update = False
     marketing_opted_in = False
     registration_form = UserRegistrationForm()
     profile_form = ProfileForm()
-    if user.is_authenticated:
-        order_details = {
-            'first_name' : request.session.get('first_name', None), 
-            'last_name' : request.session.get('last_name', None),
-            'running_club' : request.session.get('running_club', None),
-            'address_line_1' : request.session.get('address_line_1', None),
-            'address_line_2' : request.session.get('address_line_2', None), 
-            'address_line_3' : request.session.get('address_line_3', None), 
-            'town_or_city' : request.session.get('town_or_city', None), 
-            'county' : request.session.get('county', None), 
-            'postcode' : request.session.get('postcode', None)    
-            }  
-        saved_details = {
-            'first_name': user.first_name, 
-            'last_name': user.last_name,
-            'running_club' : user.profile.running_club,
-            'address_line_1': user.profile.address_line_1,
-            'address_line_2': user.profile.address_line_2,
-            'address_line_3 ': user.profile.address_line_3,
-            'town_or_city': user.profile.town_or_city,
-            'county': user.profile.county,
-            'postcode': user.profile.postcode
-             }
-        for field in profile_details:
-            if order_details[field] != saved_details[field]:
-                details_to_update = True
-                break
-        marketing_opted_in = user.profile.marketing_opt_in
-    else:
+    if not user.is_authenticated:
         registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})
         profile_form = ProfileForm(request.POST or None, initial={
             'first_name' : request.session['first_name'], 
