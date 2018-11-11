@@ -23,6 +23,9 @@
 }
 
 @media (min-width: 576px) {
+  .nav-banner {
+    display: flex-nowrap;
+  }
   .nav-banner__link {
     display: inline;
     font-family: "Open Sans", sans-serif;
@@ -43,10 +46,10 @@
     font-size: 1.5rem;
   }
 }
-@media (min-width: 576px) {
+@media (min-width: 992px) {
   .nav-dropdown {
-    display: flex;
-    justify-content: space-around;
+    display: flex-nowrap;
+    justify-content: center;
   }
   .nav-dropdown__link {
     font-family: "Open Sans", sans-serif;
@@ -184,6 +187,21 @@
 }
 .shoe-detail__title {
   margin: auto;
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.shoe-detail__slider {
+  margin-top: 4%;
+}
+@media (min-width: 576px) {
+  .shoe-detail__slider {
+    display: bblock;
+    width: 100%;
+  }
 }
 .shoe-detail__image {
   width: 100%;
@@ -191,62 +209,100 @@
 @media (min-width: 576px) {
   .shoe-detail__image {
     display: inline-block;
-    width: 60%;
+    width: 100%;
   }
 }
 
-.add-to-cart {
+.add-to-basket {
   display: block;
   width: 100%;
   margin: 5%;
 }
 @media (min-width: 576px) {
-  .add-to-cart {
+  .add-to-basket {
     display: inline-block;
-    width: 30%;
     margin: 0;
     padding-left: 10%;
   }
 }
 
-@media (min-width: 576px) {
-  .price-and-quantity-container {
-    width: 100%;
-  }
-}
-.price-and-quantity-container .price {
+.price-and-quantity-container__price {
   display: inline-block;
-  width: 40%;
+  width: 50%;
   padding-left: 4%;
 }
-.price-and-quantity-container .quantity-chooser {
+.price-and-quantity-container__price h3 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+.price-and-quantity-container__quantity-chooser {
   display: inline-block;
   width: 40%;
   min-width: 7rem;
 }
-.price-and-quantity-container .quantity-chooser button {
-  height: 2rem;
-  width: 2rem;
+.price-and-quantity-container__quantity-chooser button {
+  height: 2.5rem;
+  width: 2.5rem;
   color: black;
   border-color: black;
   border-radius: 0.2rem;
+  font-size: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
 }
-.price-and-quantity-container .quantity-chooser .quantity {
-  font-size: larger;
+.price-and-quantity-container__quantity-chooser .quantity {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
   margin: 5%;
 }
-
-.size-chooser-container {
-  margin: 5%;
-}
-
-.size-chooser {
-  margin-bottom: 5%;
-}
-
-.add-to-cart-button {
+.size-container {
+  width: 90%;
   margin-top: 5%;
+  display: block;
+}
+.size-container__selector-form {
+  display: block;
+  margin-bottom: 5%;
   width: 100%;
+}
+.size-container label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+}
+.size-container select {
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.add-to-basket-button {
+  display: block;
+  margin-top: 10%;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.shoe-details {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.shoe-details button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
 /* Profile page */
@@ -256,26 +312,98 @@
 }
 
 /* Basket */
+.basket {
+  margin: 2%;
+}
+.basket h2 {
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
 .basket__row {
-  padding: 2% 5%;
+  display: block;
+  margin-top: 5%;
 }
 .basket__image {
-  width: 10rem;
+  display: inline-block;
+  vertical-align: top;
+  width: 8rem;
 }
 .basket__adjust {
-  width: 80%;
-  margin-left: 2%;
+  display: inline-block;
+  width: 60%;
+}
+.basket__adjust h5 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.basket__adjust__quantity {
+  display: inline-block;
+  width: 40%;
+  margin-top: 3%;
+}
+.basket__adjust__quantity button {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding-bottom: 0.1rem;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  vertical-align: top;
+}
+.basket__adjust__quantity button i {
+  color: white;
+}
+.basket__adjust__quantity .new_quantity {
+  font-weight: 600;
+  font-size: 1.5rem;
+  vertical-align: top;
+}
+.basket__adjust__size {
+  display: inline-block;
+  width: 45%;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.basket__adjust__update-button {
+  margin-top: 5%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2rem;
+}
+.basket__checkout-button {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.basket-total {
+  margin-top: 10%;
 }
 
 .checkout-basket {
   margin: 5%;
+  font-family: "Open Sans", sans-serif;
+}
+.checkout-basket__total {
+  font-size: 1.3rem;
+  font-weight: 900;
 }
 
 .contact-details {
   margin: 5%;
 }
 
-.contact-details-form input {
+.order-details-form {
+  margin: 5%;
+}
+.order-details-form label {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 1.5rem;
+}
+.order-details-form input {
+  font-family: "Open Sans", sans-serif;
   background-color: white;
   height: 40px;
   width: 100%;
@@ -285,18 +413,30 @@
   box-shadow: 0 1px 3px 0 #636569;
   margin-bottom: 3%;
 }
+.order-details-form .next-button {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 5%;
+  margin-bottom: 20%;
+  background-image: linear-gradient(#f60606, #ff8383);
+}
 
 /* Stripe */
+.card-details__label {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
 .StripeElement {
   display: block;
   background-color: white;
   height: 40px;
-  width: 80%;
+  width: 100%;
   margin-bottom: 5%;
   padding: 1rem 1.2rem;
   border-radius: 4px;
   border: 1px solid transparent;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
+  box-shadow: 0 1px 3px 0 #636569;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
 }
@@ -315,9 +455,7 @@
 
 #submit_payment_btn {
   display: block;
-}
-
-.next-button {
+  font-family: "Open Sans", sans-serif;
   margin-top: 5%;
   margin-bottom: 20%;
   background-image: linear-gradient(#f60606, #ff8383);

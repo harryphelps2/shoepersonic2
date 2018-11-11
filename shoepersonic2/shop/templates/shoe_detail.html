@@ -5,35 +5,43 @@
 <div class="container-fluid shoe-detail">
 
     <h1 class="shoe-detail__title">{{ shoe.brand }} {{ shoe.name }}</h1>
-    <img class="shoe-detail__image" src="{{ MEDIA_URL }}{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
-    <div class="add-to-cart">
+    <div class="slider shoe-detail__slider">
+        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+    </div>
+    <div class="add-to-basket">
         <div class="price-and-quantity-container">
-            <div class="price">
+            <div class="price-and-quantity-container__price">
                 <h3>£{{ shoe.price }}</h3>
             </div>
-            <div class="quantity-chooser">
-                <button class="minus" disabled>-</button>
+            <div class="price-and-quantity-container__quantity-chooser">
+                <button class="minus" disabled>
+                    <i class="fas fa-minus"></i>
+                </button>
                 <span class="quantity" name="quantity">1</span>
-                <button class="plus">+</button>
+                <button class="plus">
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
         </div>
-        <div class="input-group size-chooser-container">
-            <form id="basketform" action="{% url 'add_to_basket' shoe.id %}" method="post">
+        <div class="input-group size-container">
+            <form id="basketform" class="size-container__selector-form" action="{% url 'add_to_basket' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div class="input-group-prepend size-chooser">
                     <label class="input-group-text" for="size-chooser">Size</label>
                     <select form="basketform" required name="size" class="custom-select" id="size-chooser">
                         {% for shoe_stock in stock_level %}
-                        <option value="{{ shoe_stock.size }}" {% if shoe == current_shoe %}selected{% endif %} >{{ shoe_stock.size }} ({{ shoe_stock.stock }} pairs left)</option>
+                        <option value="{{ shoe_stock.size }}" {% if shoe == current_shoe %}selected{% endif %} {% if shoe_stock.stock == 0 %} disabled {% endif %}>{{ shoe_stock.size }} - {{ shoe_stock.stock }} left</option>
                         {% endfor %}
                     </select>
                 </div>
-                <button class="btn btn-primary btn-lg btn-danger add-to-basket-button" type="submit" value="1" name="quantity">Add to Basket</button>
+                <button class="btn btn-primary btn-lg btn-danger btn-block add-to-basket-button" form="basketform" type="submit" value="1" name="quantity">Add to Basket</button>
             </form>
         </div>
     </div>
-    <div class="accordion" id="accordionExample">
-        <div class="card">
+    <div class="accordion shoe-details" id="accordionExample">
+        <div class="card shoe-details__stats">
             <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -72,7 +80,7 @@
             <div class="card-header" id="headingThree">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                What you think (coming soon)
+                What you think
                 </button>
             </h5>
             </div>
@@ -84,6 +92,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}

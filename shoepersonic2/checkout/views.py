@@ -17,6 +17,10 @@ stripe.api_key = settings.STRIPE_SECRET
 def contact_details(request):
     """Collect email and running club and add to session"""
     user = request.user
+    basket = request.session.get('basket', {})
+    if not basket:
+        messages.danger(request, "You don't have any thing in your basket.")
+        return redirect(reverse('all_shoes'))
     if user.is_authenticated:
         contact_details = {
             'email': user.email, 

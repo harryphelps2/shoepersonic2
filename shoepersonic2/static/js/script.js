@@ -17,7 +17,7 @@ $(document).ready(function(){
 		} else {
 			$button.siblings(".minus").attr("disabled",false)
         }
-        $(".add-to-cart").attr({'value':quantity})
+        $(".add-to-basket-button").attr({'value':quantity})
     });
 
 	$(".minus_update, .plus_update").click(function(e){
@@ -37,6 +37,16 @@ $(document).ready(function(){
 		} else {
 			$button.siblings(".minus_update").attr("disabled",false)
         }
-        $(".adjust-cart").attr({'value':quantity})
+        $(".adjust-basket-form").attr({'value':quantity})
 	});
 })
+
+$(document).ready(function(){
+	$('.slider').slick({
+		centerMode: true,
+		dots: true,
+		infinite: true,
+		speed: 300,
+		slidesToShow: 1
+  })
+});

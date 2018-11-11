@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 
 def view_basket(request):
     """A view that renders the cart contents"""
-    basket = request.session.get('cart', {})
+    basket = request.session.get('basket', {})
     return render(request, "basket.html")
 
 def add_to_basket(request, id):

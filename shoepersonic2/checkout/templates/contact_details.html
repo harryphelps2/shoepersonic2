@@ -4,9 +4,9 @@
 {% block page_header %}Checkout{% endblock %}
 {% block content %}
 <nav class="nav nav-pills nav-fill">
-    <a class="nav-item nav-link active" href="{% url 'contact_details' %}">Contact <i class="fas fa-arrow-right"></i></a>
-    <a class="nav-item nav-link" href="{% url 'delivery_details' %}">Delivery</a>
-    <a class="nav-item nav-link" href="{% url 'card_details' %}">Payment</a>
+    <a class="nav-item nav-link active" href="#">Contact</a>
+    <a class="nav-item nav-link disabled" href="#">Delivery</a>
+    <a class="nav-item nav-link disabled" href="#">Payment</a>
 </nav>
 <div class="checkout-basket">
     <h5>Your basket</h5>    
@@ -14,7 +14,7 @@
     {% for item in basket_items %}
         <li class="list-group-item d-flex justify-content-between">
             <div>
-                <h6>{{ item.product.name }}</h6>
+                <h6>{{ item.product.brand }} {{ item.product.name }}</h6>
             </div>
             <div>
                 <h6>£{{ item.product.price }}</h6> 
@@ -23,12 +23,12 @@
         {% endfor %}
         <li class="list-group-item d-flex justify-content-between">
             <div>
-                <h6>Total: <span>£{{ total }}</span></h6>
+                <h6 class="checkout-basket__total">Total: <span>£{{ total }}</span></h6>
             </div>
         </li>
     </ul>
 </div>
-<form class="contact-details-form" action="{% url 'contact_details' %}" method="post" role="form">
+<form class="order-details-form" action="{% url 'contact_details' %}" method="post" role="form">
     <h5>Contact details</h5>
     {% csrf_token %}
     {{ contact_form|crispy }}

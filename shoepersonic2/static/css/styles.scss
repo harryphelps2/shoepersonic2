@@ -31,6 +31,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 }
 @media (min-width: 576px) {
     .nav-banner{
+        display: flex-nowrap;
         &__link{
             display: inline;
             font-family: $text-font;
@@ -54,11 +55,10 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 }
 
 // Bottom banner and dropdown styling
-@media (min-width: 576px) {
+@media (min-width: 992px) {
     .nav-dropdown{
-        display: flex;
-        justify-content: space-around;
-
+        display: flex-nowrap;
+        justify-content: center;
         &__link{
             font-family: $text-font;
             font-size: 1.1rem;
@@ -74,7 +74,6 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
         }
     }
 }
-
 /* Home page */
 
 .front-page-hero-image{
@@ -215,76 +214,138 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     
     &__title{
         margin: auto;
+        font-family: $title-font;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
     }
     
+    &__slider{
+        margin-top: 4%;
+    }
+    @media (min-width: 576px) {
+        &__slider{
+            display: bblock;
+            width: 100%;
+            
+        }
+    }
+
     &__image{
         width: 100%;
         @media (min-width: 576px) {
             display: inline-block;
-            width: 60%;
+            width: 100%;
         }
-        
     }
-}
+} 
 
-.add-to-cart{
+.add-to-basket{
     display: block;
     width: 100%;
     margin: 5%;
     
     @media (min-width: 576px) {
         display: inline-block;
-        width: 30%;
         margin: 0;
         padding-left: 10%;
     }
 }
 
 .price-and-quantity-container{
-    
-    @media (min-width: 576px) {
-        width: 100%;
-    }
         
-    .price {
+    &__price {
         display: inline-block;
-        width: 40%;
+        width: 50%;
         padding-left: 4%;
+        h3{
+            font-family: $text-font;
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
     }
     
-    .quantity-chooser{
+    &__quantity-chooser{
         display: inline-block;
         width: 40%;
         min-width: 7.0rem;
         
         button{
-            height: 2.0rem;
-            width: 2.0rem;
+            height: 2.5rem;
+            width: 2.5rem;
             color: black;
             border-color: black;
             border-radius: 0.2rem;
+            font-size: 1.5rem;
+            font-family: $text-font;
+            font-weight: 700;
         }
         
         .quantity{
-            font-size: larger;
+            font-family: $text-font;
+            font-size: 2.0rem;
+            font-weight: 900;
             margin: 5%;
+        }
+
+        @media (min-width: 576px) {
+            
         }
     }
 }
 
-.size-chooser-container{
-    margin: 5%;
-}
-
-.size-chooser{
-    margin-bottom: 5%;
-}
-
-.add-to-cart-button{
+.size-container{
+    width: 90%;
     margin-top: 5%;
-    width: 100%
+    display: block;
+
+    &__selector-form{
+        display: block;
+        margin-bottom: 5%;
+        width: 100%;
+    }
+    label{
+        font-family: $text-font;
+        font-size: 2.0rem;
+        font-weight: 900;
+        text-align: center;
+    }
+    select{
+        font-family: $text-font;
+        font-size: 2.0rem;
+        font-weight: 900;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
 }
 
+
+.add-to-basket-button{
+    display: block;
+    margin-top: 10%;
+    width: 100%;
+    font-family: $text-font;
+    font-size: 2.0rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.shoe-details{
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+    button{
+        font-family: $text-font;
+        font-size: 1.5rem;
+        font-weight: 900;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+}
 
 
 /* Profile page */
@@ -299,29 +360,102 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 /* Basket */
 
 .basket{
+    margin: 2%;
+    h2{
+        font-family: $title-font;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 2.0rem;
+        font-weight: 700;
+        line-height: 1.2;  
+    }
     &__row{
-        padding: 2% 5%;
+        display: block;
+        margin-top: 5%;
     }
     &__image{
-        width: 10rem;
+        display: inline-block;
+        vertical-align: top;
+        width: 8.0rem;
     }
     &__adjust{
-        width: 80%;
-        margin-left: 2%;
+        display: inline-block;
+        width: 60%;
+
+        h5{
+            font-family: $text-font;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        &__quantity{
+            display: inline-block;
+            width: 40%;
+            margin-top: 3%;
+            button{
+                height: 1.5rem;
+                width: 1.5rem;
+                padding-bottom: 0.1rem;
+                color: black;
+                font-family: $text-font;
+                vertical-align: top;
+                i{
+                    color: white;
+                }
+            }
+            .new_quantity{
+                font-weight: 600;
+                font-size: 1.5rem;
+                vertical-align: top;
+            }
+        }
+        &__size{
+            display: inline-block;
+            width: 45%;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        &__update-button{
+            margin-top: 5%;
+            font-family: $text-font;
+            font-size: 1.2rem;
+        }
     }
+    &__checkout-button{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+}
+
+.basket-total{
+    margin-top: 10%;
 }
 
 // Checkout contact details
 .checkout-basket{
     margin: 5%;
+    font-family: $text-font;   
+
+    &__total{
+        font-size: 1.3rem;
+        font-weight: 900;
+    }
+
+
 }
 
 .contact-details{
     margin: 5%;
 }
 
-.contact-details-form{
+.order-details-form{
+    margin: 5%;
+    label{
+        font-family: $text-font;
+        font-weight: 1.5rem;
+    }
     input{
+        font-family: $text-font;
         background-color: white;
         height: 40px;
         width: 100%;
@@ -331,18 +465,33 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
         box-shadow: 0 1px 3px 0 #636569;
         margin-bottom: 3%;
     }
+    .next-button{
+        font-family: $text-font;
+        margin-top: 5%;
+        margin-bottom: 20%;
+        background-image: $primary-button-red;
+    }
 }
 /* Stripe */
+.card-details{
+    &__label{
+        font-family: $text-font;
+        font-weight: 900;
+        font-size: 1.5rem;
+
+    }
+}
+
 .StripeElement {
     display: block;
     background-color: white;
     height: 40px;
-    width: 80%;
+    width: 100%;
     margin-bottom: 5%;
     padding: 1.0rem 1.2rem;
     border-radius: 4px;
     border: 1px solid transparent;
-    box-shadow: 0 1px 3px 0 #e6ebf1;
+    box-shadow: 0 1px 3px 0 #636569;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
 }
@@ -361,9 +510,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 
 #submit_payment_btn{
     display: block;
-}
-
-.next-button{
+    font-family: $text-font;
     margin-top: 5%;
     margin-bottom: 20%;
     background-image: $primary-button-red;
