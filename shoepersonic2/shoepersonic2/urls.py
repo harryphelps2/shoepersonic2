@@ -19,6 +19,7 @@ from home.views import index
 from accounts import urls as account_urls 
 from django.urls import path, re_path, include
 from django.conf import settings
+from home import urls as home_urls
 from shop import urls as shop_urls
 from basket import urls as basket_urls
 from checkout import urls as checkout_urls
@@ -26,7 +27,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'),
+    path('', include(home_urls)),
     path('accounts/', include(account_urls)),
     path('shop/', include(shop_urls)),
     path('basket/', include(basket_urls)),

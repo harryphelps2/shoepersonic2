@@ -53,7 +53,7 @@
   25% {
     transform: rotateX(90deg);
   }
-  60% {
+  75% {
     transform: scale(2.5, 2);
   }
   100% {

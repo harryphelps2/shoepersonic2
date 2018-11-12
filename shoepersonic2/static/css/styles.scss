@@ -60,9 +60,8 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     25% {
         transform: rotateX(90deg);
     }
-    60% { 
+    75% { 
         transform: scale(2.5, 2.0);
-        // transform: rotateX(90deg); 
     }
     100% { right:0px; }
 }
