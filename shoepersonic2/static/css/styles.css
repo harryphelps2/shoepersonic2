@@ -63,7 +63,7 @@
 .jet-logo {
   position: relative;
   animation-name: jet-animation;
-  animation-duration: 2.5s;
+  animation-duration: 2s;
 }
 
 @media (min-width: 992px) {
@@ -503,10 +503,17 @@
 
 .footer {
   background-color: #888888;
-  display: flex;
-  justify-content: space-around;
   padding-top: 3%;
   padding-bottom: 3%;
+}
+.footer__links {
+  display: flex;
+  justify-content: space-around;
+}
+.footer__contact {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3%;
 }
 .footer a {
   text-decoration: none;

@@ -69,7 +69,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 .jet-logo{
     position: relative;
     animation-name: jet-animation;
-    animation-duration: 2.5s;
+    animation-duration: 2.0s;
 }
 
 
@@ -560,10 +560,18 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 
 .footer{
     background-color: rgb(136, 136, 136);
-    display: flex;
-    justify-content: space-around;
     padding-top: 3%;
     padding-bottom: 3%;
+
+    &__links{
+        display: flex;
+        justify-content: space-around;
+    }
+    &__contact{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 3%;
+    }
     a{
         text-decoration: none;
         color: rgb(54, 54, 54);
