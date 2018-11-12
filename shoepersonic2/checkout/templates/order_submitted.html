@@ -6,21 +6,24 @@
 <div>
     <canvas id="confetti" width="1" height="1"></canvas>
     {% if user.is_authenticated %}
-    <h2>Thank you!!</h2>
-    <p>Hope to see you again some time</p>
-    {% else %}
-    <h2>Thank you!!</h2>
-    <p>We should do this again some time:</p>
-    <form method="post" id="save_new_user" action="{% url 'order_submitted' %}">
-        {% csrf_token %}
-        {{ registration_form|crispy }}
-        <input class="form-check-input" type="checkbox" value="" form="save_new_user">
-        <label class="form-check-label" for="defaultCheck1">
-            Let me know when you do the next review
-        </label>
-        <button type="submit">Save details for next time</button>
-    </form>
-    {% endif %}
+    <div class="confetti-text">
+        <h2>Thank you!!</h2>
+        <p>Hope to see you again some time</p>
+        <a href="{% url 'index' %}" class="btn btn-primary btn-lg btn-block btn-success front-page-hero-text__button">Home</a>
+        {% else %}
+        <h2>Thank you!!</h2>
+        <p>We should do this again some time:</p>
+        <form method="post" id="save_new_user" action="{% url 'order_submitted' %}">
+            {% csrf_token %}
+            {{ registration_form|crispy }}
+            <input class="form-check-input" type="checkbox" value="" form="save_new_user">
+            <label class="form-check-label" for="defaultCheck1">
+                Let me know when you do the next review
+            </label>
+            <button type="submit">Save details for next time</button>
+        </form>
+        {% endif %}
+    </div>
 </div>
 <script src="{% static 'js/celebration.js' %}"></script>
 {% endblock %}

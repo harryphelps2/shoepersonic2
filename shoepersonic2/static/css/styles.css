@@ -46,6 +46,26 @@
     font-size: 1.5rem;
   }
 }
+@keyframes jet-animation {
+  0% {
+    right: 1000px;
+  }
+  25% {
+    transform: rotateX(180deg);
+  }
+  50% {
+    transform: scale(2, 2);
+  }
+  100% {
+    right: 0px;
+  }
+}
+.jet-logo {
+  position: relative;
+  animation-name: jet-animation;
+  animation-duration: 2.5s;
+}
+
 @media (min-width: 992px) {
   .nav-dropdown {
     display: flex-nowrap;
@@ -137,7 +157,7 @@
 }
 .front-page-info__item i {
   margin-right: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   font-size: 2.5rem;
 }
 .front-page-info .alot {
@@ -326,6 +346,8 @@
 .basket__row {
   display: block;
   margin-top: 5%;
+  padding: 2%;
+  border: 1px solid dimgray;
 }
 .basket__image {
   display: inline-block;
@@ -461,19 +483,34 @@
   background-image: linear-gradient(#f60606, #ff8383);
 }
 
+/* Order submitted */
+#confetti {
+  z-index: -1;
+  height: 30rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.confetti-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
 .footer {
-  background-color: dimgray;
-  color: white;
-  padding-top: 10%;
-  padding-bottom: 10%;
+  background-color: #888888;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 .footer a {
-  color: inherit;
-}
-.footer__email {
-  display: block;
-  width: 100%;
-  margin: 5%;
+  text-decoration: none;
+  color: #363636;
 }
 
 /*# sourceMappingURL=styles.css.map */

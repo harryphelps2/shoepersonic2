@@ -29,6 +29,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
         font-size: 1.3rem;
     }
 }
+
 @media (min-width: 576px) {
     .nav-banner{
         display: flex-nowrap;
@@ -53,6 +54,24 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
         }
     }
 }
+
+@keyframes jet-animation {
+    0% { right:1000px; }
+    25% {
+        transform: rotateX(180deg);
+    }
+    50% { 
+        transform: scale(2, 2); 
+    }
+    100% { right:0px; }
+}
+
+.jet-logo{
+    position: relative;
+    animation-name: jet-animation;
+    animation-duration: 2.5s;
+}
+
 
 // Bottom banner and dropdown styling
 @media (min-width: 992px) {
@@ -154,7 +173,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
         padding-top: 2.0rem;
         i{
             margin-right: 5%;
-            margin-bottom: 5%;
+            margin-bottom: 1%;
             font-size: 2.5rem;
         }
     }
@@ -372,6 +391,8 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     &__row{
         display: block;
         margin-top: 5%;
+        padding: 2.0%;
+        border: 1px solid rgb(105, 105, 105);
     }
     &__image{
         display: inline-block;
@@ -516,20 +537,35 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     background-image: $primary-button-red;
 }
 
+/* Order submitted */
+
+#confetti{
+    z-index: -1;
+    height: 30rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.confetti-text{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
 
 // Footer
 
 .footer{
-    background-color: dimgray;
-    color: white;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    background-color: rgb(136, 136, 136);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3%;
+    padding-bottom: 3%;
     a{
-        color: inherit;
-    }
-    &__email{
-        display: block;
-        width: 100%;
-        margin: 5%;
+        text-decoration: none;
+        color: rgb(54, 54, 54);
     }
 }
