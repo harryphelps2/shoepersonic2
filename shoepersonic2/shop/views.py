@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Shoe, Stock
+from .models import Shoe, Stock, ProductImage, CustomerReview
 
 def all_shoes(request):
     """
@@ -16,4 +16,15 @@ def shoe_detail(request, id):
     """
     shoe = Shoe.objects.get(pk=id)
     stock_level = Stock.objects.filter(shoe_model = shoe.id)
-    return render(request, 'shoe_detail.html', {'shoe':shoe, 'stock_level':stock_level})
+    images = ProductImage.objects.filter(shoe_model = shoe.id)
+    reviews = CustomerReview.objects.filter(shoe_model = shoe.id)
+    return render(request, 'shoe_detail.html', 
+                        {
+                            'shoe':shoe, 
+                            'stock_level':stock_level, 
+                            'images':images,
+                            'reviews':reviews,
+                        })
+
+def add_review(request):
+    pass

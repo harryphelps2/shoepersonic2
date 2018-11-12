@@ -7,8 +7,9 @@
     <h1 class="shoe-detail__title">{{ shoe.brand }} {{ shoe.name }}</h1>
     <div class="slider shoe-detail__slider">
         <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
-        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
-        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        {% for image in images %}
+        <div><img class="shoe-detail__image" src="../../../media/{{ image.image_url }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        {% endfor %}
     </div>
     <div class="add-to-basket">
         <div class="price-and-quantity-container">
@@ -86,7 +87,16 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-                No reviews yet
+                {% if not reviews %}
+                    <h4>No reviews yet</h4>
+                {% else %}
+                    {% for review in reviews %}
+                        <h4>{{ review.user }} reviewed this shoe on {{ review.date }}</h4>
+                        <p>{{ review.customer_race_experience }}</p>
+                        <p>{{ review.customer_review }}</p>
+                    {% endfor %}
+                {% endif %}
+                <a class="btn btn-block btn-secondary btn-success" href="{% url 'add_review' shoe.id %}">Add your own review</a>
             </div>
             </div>
         </div>

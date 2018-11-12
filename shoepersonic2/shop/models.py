@@ -53,7 +53,7 @@ class ProductImage(models.Model):
    image_url = models.ImageField(null=True, blank=True) 
 
    def __str__(self):
-       return self.shoe_model
+       return self.image_url
    
 class CustomerReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) 
@@ -66,5 +66,5 @@ class CustomerReview(models.Model):
     customer_review = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        review_line = "{0} reviewed {1} on {2}".format(user, shoe_model, date)
+        review_line = "{0} reviewed {1} on {2}".format(self.user, self.shoe_model, self.date)
         return review_line
