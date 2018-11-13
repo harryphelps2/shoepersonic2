@@ -26,5 +26,7 @@ def shoe_detail(request, id):
                             'reviews':reviews,
                         })
 
-def add_review(request):
-    pass
+def add_review(request, id):
+    """Add review page"""
+    shoe = Shoe.objects.get(pk=id)
+    return render(request, 'add_review.html', {'shoe':shoe})

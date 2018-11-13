@@ -2,6 +2,12 @@
 {% block content %}
 <h1>We want to know what you think...</h1>
 <div class="container-fluid">
-
+    <h2>Your review for {{ shoe.brand }} {{ shoe.name }}</h2>
+    <img src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.name }}">
 </div>
+<form>
+    <div class="rating">
+        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+    </div>
+</form>
 {% endblock %}

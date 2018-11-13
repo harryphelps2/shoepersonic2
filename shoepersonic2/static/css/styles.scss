@@ -7,6 +7,37 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 
 .body, html {
     height: 100%;
+    // z-index: -10;
+    // background-image: url('../img/all_shoes_getting_smaller.JPG');
+    // background-repeat: repeat;
+    // background-position: center;
+    // background-size: cover;
+    // opacity: 0.9;
+    // filter: alpha(opacity=20); 
+}
+
+
+h1{
+    font-family: $title-font;
+    font-style: italic;
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+h2{
+    font-family: $title-font;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+h3{
+    font-family: $title-font;
+    font-style: italic;
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+p,li,a{
+    font-family: $text-font;
 }
 
 /* Navbar */
@@ -30,7 +61,7 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     .nav-banner{
         display: flex-nowrap;
         &__link{
@@ -366,6 +397,22 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     }
 }
 
+/* Add review */
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
+  .rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.2em;
+  }
+  .rating > span:hover:before,
+  .rating > span:hover ~ span:before {
+     content: "\2605";
+     position: absolute;
+  }
+
 
 /* Profile page */
 
@@ -566,14 +613,23 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     &__links{
         display: flex;
         justify-content: space-around;
+        :hover{
+            color: white;
+        }
+
     }
     &__contact{
         display: flex;
         justify-content: space-around;
         margin-top: 3%;
+        :hover{
+            color: white;
+        }
+
     }
     a{
         text-decoration: none;
         color: rgb(54, 54, 54);
+    
     }
 }

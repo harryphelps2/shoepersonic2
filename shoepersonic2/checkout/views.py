@@ -157,6 +157,7 @@ def submit_order(request):
                 currency='gbp',
                 description=request.session.get('email', None),
                 source=token,
+                capture=False,
             )
         except stripe.error.CardError:
             messages.error(request, "Your card was declined!")
