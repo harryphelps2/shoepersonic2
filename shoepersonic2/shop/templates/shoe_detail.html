@@ -5,9 +5,9 @@
 <div class="container-fluid shoe-detail">
     <h1 class="shoe-detail__title">{{ shoe.brand }} {{ shoe.name }}</h1>
     <div class="slider shoe-detail__slider">
-        <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        <div><img class="shoe-detail__image" src="/media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
         {% for image in images %}
-        <div><img class="shoe-detail__image" src="../../../media/{{ image.image_url }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
+        <div><img class="shoe-detail__image" src="/media/{{ image.image_url }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
         {% endfor %}
     </div>
     <div class="add-to-basket">

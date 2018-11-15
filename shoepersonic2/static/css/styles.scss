@@ -7,13 +7,6 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
 
 .body, html {
     height: 100%;
-    // z-index: -10;
-    // background-image: url('../img/all_shoes_getting_smaller.JPG');
-    // background-repeat: repeat;
-    // background-position: center;
-    // background-size: cover;
-    // opacity: 0.9;
-    // filter: alpha(opacity=20); 
 }
 
 
@@ -590,7 +583,7 @@ p,li,a{
 .StripeElement {
     display: block;
     background-color: white;
-    height: 40px;
+    height: 50px;
     width: 100%;
     margin-bottom: 5%;
     padding: 1.0rem 1.2rem;
@@ -625,19 +618,22 @@ p,li,a{
 
 #confetti{
     z-index: -1;
-    height: 30rem;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    position: relative;
+    position: fixed;
 }
 
 .confetti-text{
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -100%);
+    margin-bottom: 5%;
+    &__button{
+        margin-top: 3%;
+    }
+}
+
+.confetti-container{
+    padding-top: 10%;
+    margin-bottom: 10%;
 }
 
 // Footer
@@ -662,6 +658,7 @@ p,li,a{
     }
     &__contact{
         display: block;
+        text-align: center;
         margin-top: 3%;
         padding-bottom: 4%;
         color: white;
@@ -673,4 +670,27 @@ p,li,a{
         text-decoration: none;
         color: white;
     }
+    @media (min-width: 576px) {
+        &__links{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding-top: 4%;
+            :hover{
+                color: lightblue;
+            }
+    
+        }
+        &__contact{
+            display: block;
+            text-align: center;
+            margin-top: 3%;
+            padding-bottom: 4%;
+            color: white;
+            :hover{
+                color: lightblue;
+            }
+        }
+        }
+
 }

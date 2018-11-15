@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% block page_title %}Thank you!{% endblock %}
 {% block content %}
-<div>
+<div class="confetti-container">
     <canvas id="confetti" width="1" height="1"></canvas>
     {% if user.is_authenticated %}
     <div class="confetti-text">
         <h2>Thank you!!</h2>
         <p>Hope to see you again some time</p>
         <a href="{% url 'index' %}" class="btn btn-primary btn-lg btn-block btn-success front-page-hero-text__button">Home</a>
-    {% else %}
+        {% else %}
         <h2>Thank you!!</h2>
         <p>We should do this again some time:</p>
-        <form method="post" action="{% url 'order_submitted' %}">
+        <form method="post" id="save_new_user" action="{% url 'order_submitted' %}">
             {% csrf_token %}
             {{ registration_form|crispy }}
-            <button type="submit">Save details for next time</button>
+            <button class="btn btn-primary btn-danger confetti-text__button" type="submit">Save details for next time</button>
         </form>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 <script src="{% static 'js/celebration.js' %}"></script>
