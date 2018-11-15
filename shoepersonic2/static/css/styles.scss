@@ -35,40 +35,70 @@ h3{
     font-size: 1.3rem;
     font-weight: 900;
 }
+h4{
+    font-family: $title-font;
+    font-style: italic;
+    font-size: 1.0rem;
+    font-weight: 900;
+}
+h5{
+    font-family: $title-font;
+    font-style: italic;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 p,li,a{
     font-family: $text-font;
 }
 
 /* Navbar */
-// Top banner styling
-.nav-banner{
-    &__link{
-        display: none;
-        text-decoration: none;
-    }
+.nav-dropdown{
+
     &__brand{
         font-family: $title-font;
         font-style: italic;
         font-weight: bold;
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         font-weight: 700;
-        line-height: 1.2;
+    }
+    &__link{
+        font-family: $text-font;
+        font-size: 1.5rem;
+        color: white;
+        text-decoration: none;
+        &:hover{
+            font-size: 1.6rem;
+            text-decoration: none;
+            transition: 0.3s;
+            color: white;
+        }
     }
     &__basket{
+        font-size: 1.5rem;
         color: white;
-        font-size: 1.3rem;
+        text-decoration: none;
+        &:hover{
+            font-size: 1.6rem;
+            text-decoration: none;
+            transition: 0.3s;
+            color: white;
+        }
     }
 }
 
-@media (min-width: 768px) {
-    .nav-banner{
-        display: flex-nowrap;
-        &__link{
-            display: inline;
-            font-family: $text-font;
-            font-size: 1.1rem;
-            line-height: 2.0rem;
+
+@media (min-width: 991px) {
+    .nav-dropdown{
+        width: 70%;
+        display: flex; 
+        justify-content: flex-end;
+        &__list{
+        display: flex;         
+        align-items: center;
+
+        }   
+        a{
             color: white;
         }
         &__brand{
@@ -79,15 +109,29 @@ p,li,a{
             font-weight: 700;
             line-height: 1.2;
         }
-        &__basket{
-            color: white;
+        &__link{
+            display: inline;
+            font-family: $text-font;
             font-size: 1.5rem;
+            padding-right: 1.0rem;
+            padding-left: 1.0rem;
+            &:hover{
+                font-size: 1.6rem;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+        }
+        &__basket{
+            font-size: 1.5rem;            
+            padding-right: 1.0rem;
+            padding-left: 1.0rem;
+
         }
     }
 }
 
 @keyframes jet-animation {
-    0% { right:500px; }
+0% { right:500px; }
     25% {
         transform: rotateX(90deg);
     }
@@ -101,29 +145,9 @@ p,li,a{
     position: relative;
     animation-name: jet-animation;
     animation-duration: 2.0s;
+    color: white;
 }
 
-
-// Bottom banner and dropdown styling
-@media (min-width: 992px) {
-    .nav-dropdown{
-        display: flex-nowrap;
-        justify-content: center;
-        &__link{
-            font-family: $text-font;
-            font-size: 1.1rem;
-            line-height: 2.0rem;
-            width: 100%;
-            margin-left: 5.0rem;
-            margin-right: 5.0rem;
-
-        }
-
-        &__account{
-            display: none;
-        }
-    }
-}
 /* Home page */
 
 .front-page-hero-image{
@@ -226,6 +250,7 @@ p,li,a{
             text-align: center;
         }
         &__item{
+            display: inline;
             display: flex;
             justify-content: center;
             font-family: $text-font;
@@ -340,9 +365,6 @@ p,li,a{
             margin: 5%;
         }
 
-        @media (min-width: 576px) {
-            
-        }
     }
 }
 
@@ -397,21 +419,32 @@ p,li,a{
     }
 }
 
+/* Our review */
+.review-container{
+    &__video{
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 576px) {
+.review-container{
+    max-width: 1000px;
+    &__video{
+        width: 560px;
+        height: 315px;
+    }
+}
+}
+
+.customer-review{
+    &__list-item{
+        padding: 3%;
+        margin-top: 4%;
+    }
+}
 /* Add review */
-.rating {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-  }
-  .rating > span {
-    display: inline-block;
-    position: relative;
-    width: 1.2em;
-  }
-  .rating > span:hover:before,
-  .rating > span:hover ~ span:before {
-     content: "\2605";
-     position: absolute;
-  }
+
 
 
 /* Profile page */
@@ -516,6 +549,10 @@ p,li,a{
     margin: 5%;
 }
 
+.checkout-nav{
+    background-color: white;
+}
+
 .order-details-form{
     margin: 5%;
     label{
@@ -606,30 +643,34 @@ p,li,a{
 // Footer
 
 .footer{
-    background-color: rgb(136, 136, 136);
-    padding-top: 3%;
-    padding-bottom: 3%;
+    background-color: #343a40;
+    // padding-top: 3%;
+    // padding-bottom: 3%;
+    // padding-right: 5%;
+    // padding-left: 5%;
+    // height: 20%;
+    
 
     &__links{
-        display: flex;
-        justify-content: space-around;
+        display: block;
+        text-align: center;
+        padding-top: 4%;
         :hover{
-            color: white;
+            color: lightblue;
         }
 
     }
     &__contact{
-        display: flex;
-        justify-content: space-around;
+        display: block;
         margin-top: 3%;
+        padding-bottom: 4%;
+        color: white;
         :hover{
-            color: white;
+            color: lightblue;
         }
-
     }
     a{
         text-decoration: none;
-        color: rgb(54, 54, 54);
-    
+        color: white;
     }
 }

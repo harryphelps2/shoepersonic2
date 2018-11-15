@@ -12,21 +12,13 @@ def privacy_policy(request):
     """privacy_policy view"""
     return render(request, 'privacy_policy.html')
 
-def returns(request):
-    """Returns view"""
-    return render(request, 'returns.html')
-
-def delivery_options(request):
-    """Delivery options view"""
-    return render(request, 'delivery_options.html')
+def delivery_and_returns(request):
+    """delivery_and_returns view"""
+    return render(request, 'delivery_and_returns.html')
 
 def about_us(request):
     """About us view"""
     return render(request, 'about_us.html')
-
-def contact_us(request):
-    """Contact us view"""
-    return render(request, 'contact_us.html')
 
 def faqs(request):
     """FAQS view"""

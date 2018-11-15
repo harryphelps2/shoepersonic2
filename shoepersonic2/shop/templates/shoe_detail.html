@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block page_title %}Shoepersonic{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid shoe-detail">
-
     <h1 class="shoe-detail__title">{{ shoe.brand }} {{ shoe.name }}</h1>
     <div class="slider shoe-detail__slider">
         <div><img class="shoe-detail__image" src="../../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
@@ -41,66 +40,66 @@
             </form>
         </div>
     </div>
-    <div class="accordion shoe-details" id="accordionExample">
-        <div class="card shoe-details__stats">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Stats
-                    </button>
-                </h5>
-            </div>
-        
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <ul>
-                        <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
-                        <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
-                        <li>Fit status: {{ shoe.fit_ranking }}</li> 
-                        <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
-                        <li>Includes {{ shoe.spikes_included }}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    What we think
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    <p>We took all 5 shoes to Parliament Hill and made a video about it. You can find out how we got on <a href="{% url 'our_reviews' %}">here</a>.</p>
-                    <p>{{ shoe.description }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                What you think
-                </button>
-            </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-                {% if not reviews %}
-                    <h4>No reviews yet</h4>
-                {% else %}
-                    {% for review in reviews %}
-                        <h4>{{ review.user }} reviewed this shoe on {{ review.date }}</h4>
-                        <p>{{ review.customer_race_experience }}</p>
-                        <p>{{ review.customer_review }}</p>
-                    {% endfor %}
-                {% endif %}
-                <a class="btn btn-block btn-secondary btn-success" href="{% url 'add_review' shoe.id %}">Add your own review</a>
-            </div>
-            </div>
+    <div>
+        <h3>What we think</h3>                
+        <p>We took all 5 shoes to Parliament Hill and made a video complete with epic montage. You can find out how we got on <a href="{% url 'our_reviews' %}">here</a>.</p>
+        <div class="shoe-details__stats">
+            <h4>Stats</h4> 
+            <ul>
+                <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
+                <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
+                <li>Fit status: {{ shoe.fit_ranking }}</li> 
+                <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
+                <li>Includes {{ shoe.spikes_included }}</li>
+            </ul>               
+            <p>{{ shoe.description|safe }}</p>
         </div>
     </div>
+    {% if not reviews and not user.is_authenticated %}
+
+    {% elif not reviews and user.is_authenticated %}
+        <div class="customer-review">
+            <h3 class="customer-review__title">Tell us what you think</h3>
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+                {% csrf_token %}
+                <div>
+                    {{ comment_form|crispy }}
+                    <button type="submit" class="btn btn-block btn-secondary add-review">Add comment</button>
+                </div>
+            </form>
+        </div>
+    {% elif reviews and not user.is_authenticated %}
+    <div class="customer-review">
+        <h3 class="customer-review__title">What do you think?</h3>
+        <h4>Create account to have your say <a href="{% url 'register' %}">here</a>.</h4>
+        <ul class="customer-review__list">
+            {% for review in reviews %}
+            <li class="card customer-review__list-item">
+                <h4>{{ review.user }} commented on {{ review.date }}</h4>
+                <p>{{ review.customer_review }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+        <div class="customer-review">
+            <h3 class="customer-review__title">Tell us what you think</h3>
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+                {% csrf_token %}
+                <div>
+                    {{ comment_form|crispy }}
+                    <button type="submit" class="btn btn-block btn-secondary add-review">Add comment</button>
+                </div>
+            </form>
+            <ul class="customer-review__list">
+                {% for review in reviews %}
+                <li class="card customer-review__list-item">
+                    <h4>{{ review.user }} commented on {{ review.date }}</h4>
+                    <p>{{ review.customer_review }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

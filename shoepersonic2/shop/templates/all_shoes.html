@@ -7,10 +7,19 @@
         {% for shoe in all_shoes %}
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0">
             <div class="card shoe-card">
-                <img class="card-img-top shoe-card__image" src="../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
+                    <a href="{% url 'shoe_detail' shoe.id %}">
+                        <img class="card-img-top shoe-card__image" src="../../media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
+                    </a>
                 <div class="card-body shoe-card__text">
                     <h5 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h5>
                     <p class="card-text">{{ shoe.strapline }}</p>
+                    <ul>
+                        <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
+                        <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
+                        <li>Fit status: {{ shoe.fit_ranking }}</li> 
+                        <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
+                        <li>Includes {{ shoe.spikes_included }}</li>
+                    </ul>  
                 </div>
                 <div class="card-footer shoe-card__footer">
                     <a href="{% url 'shoe_detail' shoe.id %}" class="btn btn-primary btn-danger btn-block">Show me more</a>

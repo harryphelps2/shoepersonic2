@@ -38,7 +38,6 @@ def contact_details(request):
             'running_club' : request.session.get('running_club', None)
             }
         contact_form = ContactDetailsForm(request.POST or contact_details)
-        print(contact_details)
         if request.method == "POST":
             if contact_form.is_valid():
                 request.session['email'] = contact_form.cleaned_data['email']
