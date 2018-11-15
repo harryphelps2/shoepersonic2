@@ -7,6 +7,7 @@ from django.contrib import auth, messages
 from django.utils import timezone
 from shop.models import Shoe, Stock
 from .models import OrderLineItem, Order
+from django.core.mail import send_mail
 
 from shoepersonic2 import settings
 import stripe
@@ -164,6 +165,13 @@ def submit_order(request):
         if charge.paid:
             messages.success(request, "You have successfully paid!")
             request.session['basket'] = {}
+            send_mail(
+                'Your order',
+                'Thank you for your order. We will be in touch when it has been accepted.',
+                'shoepersonic@gmail.com',
+                [request.session.get('email', None)],
+                fail_silently=False,
+            )
             return redirect(reverse('order_submitted'))
         else:
             messages.error(request, "Unable to take payment.")
@@ -174,45 +182,50 @@ def submit_order(request):
 def order_submitted(request):
     """Congratulations and save details for next time"""
     # If the user is authenticated
-    user = request.user
-    profile_details = ['first_name', 'last_name', 'running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'poscode']
-    logged_in = user.is_authenticated
+    profile_details = ['first_name', 'last_name', 'running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'postcode']
     details_to_update = False
     marketing_opted_in = False
-    registration_form = UserRegistrationForm()
-    profile_form = ProfileForm()
-    if not user.is_authenticated:
-        registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})
-        profile_form = ProfileForm(request.POST or None, initial={
-            'first_name' : request.session['first_name'], 
-            'last_name' : request.session['last_name'],
-            'running_club' : request.session['running_club'],
-            'address_line_1' : request.session['address_line_1'],
-            'address_line_2' : request.session['address_line_2'], 
-            'address_line_3' : request.session['address_line_3'], 
-            'town_or_city' : request.session['town_or_city'], 
-            'county' : request.session['county'], 
-            'postcode' : request.session['postcode'] 
-        })
-        if request.method=="POST":
-            registration_form = UserRegistrationForm(request.POST)
-            if registration_form.is_valid():
-                registration_form.save()
-                user = auth.authenticate(username=request.POST['email'],
-                                        password=request.POST['password1'])                  
-                if user:
-                    auth.login(user=user, request=request)
-                    profile_form = ProfileForm(request.POST, instance=request.user.profile)
-                    if profile_form.is_valid():
-                        profile_form.save()
-                    messages.success(request, "You have successfully registered")
-                    return redirect(reverse('index'))
-                else:
-                    messages.error(request, "Unable to register your account at this time")
+    # registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})
+    profile_details = {
+        'email' : request.session.get('email', None), 
+        'running_club' : request.session.get('running_club', None),
+        'first_name' : request.session.get('first_name', None), 
+        'last_name' : request.session.get('last_name', None),
+        'address_line_1' : request.session.get('address_line_1', None),
+        'address_line_2' : request.session.get('address_line_2', None), 
+        'address_line_3' : request.session.get('address_line_3', None), 
+        'town_or_city' : request.session.get('town_or_city', None), 
+        'county' : request.session.get('county', None), 
+        'postcode' : request.session.get('postcode', None) 
+    }
+    if request.method == "POST":
+        registration_form = UserRegistrationForm(request.POST)
+        if registration_form.is_valid():
+            registration_form.save()
+            user = auth.authenticate(username=request.POST['email'],
+                                    password=request.POST['password1']) 
+            if user:               
+                auth.login(user=user, request=request)
+                user.profile.running_club = profile_details['running_club']
+                user.first_name = profile_details['first_name']
+                user.last_name = profile_details['last_name']
+                user.profile.address_line_1 = profile_details['address_line_1']
+                user.profile.address_line_2 = profile_details['address_line_2']
+                user.profile.address_line_3 = profile_details['address_line_3']
+                user.profile.town_or_city = profile_details['town_or_city']
+                user.profile.county = profile_details['county']
+                user.profile.postcode = profile_details['postcode']
+                user.profile.save()
+                messages.success(request, "You have successfully registered!")
+            else:
+                messages.error(request, "Could not register")
+            return redirect(reverse('index'))
+        else:
+            messages.error(request, "Unable to register your account at this time")   
+    else:
+        registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})       
     return render(request, 'order_submitted.html', {
-        'logged_in': logged_in, 
         'details_to_update': details_to_update, 
         'marketing_opted_in': marketing_opted_in, 
         'registration_form': registration_form,
-        'profile_form' : profile_form
         })
