@@ -169,7 +169,7 @@ p,li,a{
         font-family: $title-font;
         font-style: italic;
         font-weight: bold;
-        font-size: 2.5rem;
+        font-size: 2.6rem;
         font-weight: 700;
         line-height: 1.2;
     }
@@ -205,7 +205,7 @@ p,li,a{
         font-family: $title-font;
         padding-top: 5%;
         font-weight: 700;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         text-align: center;
     }
 }
@@ -262,9 +262,48 @@ p,li,a{
 
 }
 
+/* Accounts */
+.login-form{
+    padding-top: 5%;
+    &__button{
+        margin-top: 3%;
+        font-family: $text-font;
+        font-weight: 700;
+    }
+}
+.password-reset-sent{
+    &__heading{
+        margin-top: 3%;
+        h2{
+            text-align: center;
+        }
+    }
+    &__gif{
+        margin: 5%;
+        img{
+            height: 50%;
+            width: 100%;
+        }
+    }
+}
 
+.password-reset-confirm-form{
+    margin: 5%;
+    button{
+        margin-top: 3%;
+    }
+}
 
-
+.password-reset-complete{
+    margin: 5%;
+    &__gif{
+        margin-top: 3%;
+        margin-bottom: 3%;
+        img{
+            width: 100%;
+        }
+    }
+}
 /* All Shoes Page */
 
 .shoe-card{
@@ -673,11 +712,14 @@ p,li,a{
     &__contact{
         display: block;
         text-align: center;
-        margin-top: 3%;
-        padding-bottom: 4%;
+        margin-top: 2%;
+        padding-bottom: 2%;
         color: white;
         :hover{
             color: lightblue;
+        }
+        img{
+            width: 3.0rem;
         }
     }
     a{
@@ -698,8 +740,8 @@ p,li,a{
         &__contact{
             display: block;
             text-align: center;
-            margin-top: 3%;
-            padding-bottom: 4%;
+            margin-top: 2%;
+            padding-bottom: 2%;
             color: white;
             :hover{
                 color: lightblue;

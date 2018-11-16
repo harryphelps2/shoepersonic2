@@ -14,11 +14,11 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-
-<form method="post" action="{% url 'login' %}">
+<h1>Login here</h1>
+<form class="login-form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     {{ login_form|crispy }}
-    <button type="submit">Login</button>
+    <button  class="btn btn-danger btn-primary login-form__button" type="submit">Login</button>
 </form>
 <a href="{% url 'password_reset'%}"><small>Reset password</small></a>
 
