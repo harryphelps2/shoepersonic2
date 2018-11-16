@@ -650,25 +650,36 @@ p, li, a {
 .footer__contact {
   display: block;
   text-align: center;
-  margin-top: 2%;
+  margin-top: 4%;
   padding-bottom: 2%;
   color: white;
 }
-.footer__contact :hover {
+.footer__contact a:hover {
   color: lightblue;
 }
 .footer__contact img {
+  width: 3rem;
+}
+.footer__kent {
+  display: block;
+  text-align: center;
+  margin-top: 4%;
+  padding-bottom: 2%;
+  color: white;
+}
+.footer__kent img {
   width: 3rem;
 }
 .footer a {
   text-decoration: none;
   color: white;
 }
+
 @media (min-width: 576px) {
   .footer__links {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10%;
     padding-top: 4%;
   }
   .footer__links :hover {
@@ -677,12 +688,20 @@ p, li, a {
   .footer__contact {
     display: block;
     text-align: center;
-    margin-top: 2%;
+    margin-top: 3%;
     padding-bottom: 2%;
     color: white;
   }
   .footer__contact :hover {
     color: lightblue;
+  }
+  .footer__kent {
+    display: block;
+    text-align: center;
+    margin-top: 3%;
+    padding-bottom: 2%;
+    color: white;
+    font-weight: 700;
   }
 }
 

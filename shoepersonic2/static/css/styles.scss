@@ -693,12 +693,6 @@ p,li,a{
 
 .footer{
     background-color: #343a40;
-    // padding-top: 3%;
-    // padding-bottom: 3%;
-    // padding-right: 5%;
-    // padding-left: 5%;
-    // height: 20%;
-    
 
     &__links{
         display: block;
@@ -712,25 +706,38 @@ p,li,a{
     &__contact{
         display: block;
         text-align: center;
-        margin-top: 2%;
+        margin-top: 4%;
         padding-bottom: 2%;
         color: white;
-        :hover{
+        a:hover{
             color: lightblue;
         }
         img{
             width: 3.0rem;
         }
     }
+    &__kent{
+        display: block;
+        text-align: center;
+        margin-top: 4%;
+        padding-bottom: 2%;
+        color: white;
+        img{
+        width: 3.0rem;
+        }
+    }
     a{
         text-decoration: none;
         color: white;
     }
-    @media (min-width: 576px) {
+}
+
+@media (min-width: 576px) {
+    .footer{
         &__links{
-            display: inline-block;
-            width: 100%;
-            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10%;
             padding-top: 4%;
             :hover{
                 color: lightblue;
@@ -740,13 +747,20 @@ p,li,a{
         &__contact{
             display: block;
             text-align: center;
-            margin-top: 2%;
+            margin-top: 3%;
             padding-bottom: 2%;
             color: white;
             :hover{
                 color: lightblue;
             }
         }
+        &__kent{
+            display: block;
+            text-align: center;
+            margin-top: 3%;
+            padding-bottom: 2%;
+            color: white;
+            font-weight: 700;
         }
-
-}
+    }
+    }
