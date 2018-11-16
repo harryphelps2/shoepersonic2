@@ -4,9 +4,9 @@
 {% block page_header %}Checkout{% endblock %}
 {% block content %}
 <nav class="nav nav-pills nav-fill checkout-nav">
-    <a class="nav-item nav-link checkout-nav__contact" href="{% url 'contact_details' %}">Contact</a>
-    <a class="nav-item nav-link active checkout-nav__delivery" href="#">Delivery</a>
-    <a class="nav-item nav-link disabled checkout-nav__payment" href="#">Payment</a>
+    <a class="nav-item nav-link checkout-nav__contact" href="{% url 'contact_details' %}">1. Contact <i class="fa fa-angle-double-right"></i></a>
+    <a class="nav-item nav-link active checkout-nav__delivery" href="#">2. Delivery <i class="fa fa-angle-double-right"></i></a>
+    <a class="nav-item nav-link disabled checkout-nav__payment" href="#">3. Payment <i class="fa fa-angle-double-right"></i></a>
 </nav>
 <div class="checkout-basket">
     <h5>Your basket</h5>    

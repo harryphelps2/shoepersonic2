@@ -159,14 +159,12 @@ p,li,a{
 
 
 .front-page-hero-text{
-
     text-align: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -100%);
-    color: white;
-    
+    color: white;   
     &__title{
         font-family: $title-font;
         font-style: italic;
@@ -201,19 +199,22 @@ p,li,a{
     }
 }
 
-.front-page-info{
-    margin: 10%;
-    margin-bottom: 30%;
-
-    &__title{
+.front-page-info-title{
+    display: block;
+    h2{
         font-family: $title-font;
+        padding-top: 5%;
         font-weight: 700;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         text-align: center;
     }
+}
+
+.front-page-info{
+    margin-top: 3%;
+    margin-bottom: 10%;
+
     &__item{
-        display: flex;
-        justify-content: center;
         font-family: $text-font;
         font-weight: 600;
         font-size: 1.1rem;
@@ -223,44 +224,42 @@ p,li,a{
             margin-right: 5%;
             margin-bottom: 1%;
             font-size: 2.5rem;
+            text-align: center;
         }
-    }
-    .alot{
-        width: 100%;
-        padding-top: 1.0rem;
     }
 }
 
 @media (min-width: 576px) { 
-    .front-page-info{
-        margin: 10%;
-        margin-bottom: 30%;
-    
-        &__title{
+    .front-page-info-title{
+        h2{
             font-family: $title-font;
-            font-weight: 700;
-            font-size: 2.5rem;
+            font-weight: 900;
+            font-size: 4.5rem;
             text-align: center;
+            width: 100%;
         }
+    }
+    .front-page-info{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    
         &__item{
-            display: inline;
-            display: flex;
-            justify-content: center;
             font-family: $text-font;
             font-weight: 600;
-            font-size: 1.5rem;
+            font-size: 2.1rem;
             text-align: center;
             padding-top: 2.0rem;
+            padding-left: 10%;
+            padding-right: 10%;
             i{
                 margin-right: 5%;
                 margin-bottom: 5%;
                 font-size: 2.5rem;
-            }
-            .alot{
-                padding-top: 0.2rem;
+                text-align: center;
             }
         }
     }
+
 }
 
 
@@ -543,7 +542,22 @@ p,li,a{
 }
 
 .checkout-nav{
-    background-color: white;
+    margin-top: 2%;
+    .active{
+        font-family: $text-font;
+        font-style: italic;
+        font-weight: 900;
+        background-color: white;
+        color: black;
+    }
+}
+
+@media (min-width: 576px) {
+    .checkout-nav{
+        a{
+            font-size: 1.5rem;
+        }
+    }
 }
 
 .order-details-form{

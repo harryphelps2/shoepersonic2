@@ -188,19 +188,22 @@ p, li, a {
     font-size: 2.5rem;
   }
 }
-.front-page-info {
-  margin: 10%;
-  margin-bottom: 30%;
+.front-page-info-title {
+  display: block;
 }
-.front-page-info__title {
+.front-page-info-title h2 {
   font-family: "Montserrat", sans-serif;
+  padding-top: 5%;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   text-align: center;
 }
+
+.front-page-info {
+  margin-top: 3%;
+  margin-bottom: 10%;
+}
 .front-page-info__item {
-  display: flex;
-  justify-content: center;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
@@ -211,40 +214,36 @@ p, li, a {
   margin-right: 5%;
   margin-bottom: 1%;
   font-size: 2.5rem;
-}
-.front-page-info .alot {
-  width: 100%;
-  padding-top: 1rem;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-  .front-page-info {
-    margin: 10%;
-    margin-bottom: 30%;
-  }
-  .front-page-info__title {
+  .front-page-info-title h2 {
     font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 2.5rem;
+    font-weight: 900;
+    font-size: 4.5rem;
     text-align: center;
+    width: 100%;
+  }
+
+  .front-page-info {
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   .front-page-info__item {
-    display: inline;
-    display: flex;
-    justify-content: center;
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2.1rem;
     text-align: center;
     padding-top: 2rem;
+    padding-left: 10%;
+    padding-right: 10%;
   }
   .front-page-info__item i {
     margin-right: 5%;
     margin-bottom: 5%;
     font-size: 2.5rem;
-  }
-  .front-page-info__item .alot {
-    padding-top: 0.2rem;
+    text-align: center;
   }
 }
 /* All Shoes Page */
@@ -493,9 +492,21 @@ p, li, a {
 }
 
 .checkout-nav {
+  margin-top: 2%;
+}
+.checkout-nav .active {
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  font-weight: 900;
   background-color: white;
+  color: black;
 }
 
+@media (min-width: 576px) {
+  .checkout-nav a {
+    font-size: 1.5rem;
+  }
+}
 .order-details-form {
   margin: 5%;
 }
