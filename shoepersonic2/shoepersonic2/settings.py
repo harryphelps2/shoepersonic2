@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'shop',
     'basket',
     'checkout',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -154,11 +155,25 @@ AUTHENTICATION_BACKENDS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+AWS_STORAGE_BUCKET_NAME = 'shoepersonic2'
+AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
+
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIAFILES_LOCATION = 'media'
