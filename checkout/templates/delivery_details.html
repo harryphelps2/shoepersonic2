@@ -29,6 +29,8 @@
     </ul>
 </div>
 <form class="order-details-form" action="{% url 'delivery_details' %}" method="post" id="payment-form" role="form">
+    <p>Free delivery - Your shoes will be with you within 5 working days</p>
+    <p>Add your delivery details below:</p>
     {% csrf_token %}
     {{ delivery_form|crispy }}
     <button class="btn btn-block btn-primary btn-lg btn-danger next-button" type="submit">Next</button>
