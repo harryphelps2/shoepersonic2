@@ -51,9 +51,6 @@ class Stock(models.Model):
 class ProductImage(models.Model):
    shoe_model = models.ForeignKey(Shoe, on_delete=models.SET_NULL, null=True)
    image_url = models.ImageField(null=True, blank=True) 
-
-   def __str__(self):
-       return self.image_url
    
 class CustomerReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) 

@@ -161,7 +161,7 @@ p, li, a {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-weight: bold;
-  font-size: 2.6rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -175,13 +175,13 @@ p, li, a {
 
 @media (min-width: 576px) {
   .front-page-hero-text__title {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: bold;
     line-height: 2.2;
   }
   .front-page-hero-text__strapline {
     font-family: "Open Sans", sans-serif;
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
   .front-page-hero-text__button {
     margin-top: 10%;
@@ -221,7 +221,7 @@ p, li, a {
   .front-page-info-title h2 {
     font-family: "Montserrat", sans-serif;
     font-weight: 900;
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     text-align: center;
     width: 100%;
   }
@@ -425,6 +425,14 @@ p, li, a {
   width: auto;
   height: auto;
 }
+.review-container img {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.review-container button {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
 
 @media (min-width: 576px) {
   .review-container {
@@ -438,6 +446,10 @@ p, li, a {
 .customer-review__list-item {
   padding: 3%;
   margin-top: 4%;
+}
+.customer-review button {
+  margin-top: 3%;
+  margin-bottom: 10%;
 }
 
 /* Add review */
@@ -681,6 +693,7 @@ p, li, a {
     justify-content: space-around;
     margin-top: 10%;
     padding-top: 4%;
+    font-size: 1.5rem;
   }
   .footer__links :hover {
     color: lightblue;
@@ -690,6 +703,7 @@ p, li, a {
     text-align: center;
     margin-top: 3%;
     padding-bottom: 2%;
+    font-size: 1.5rem;
     color: white;
   }
   .footer__contact :hover {

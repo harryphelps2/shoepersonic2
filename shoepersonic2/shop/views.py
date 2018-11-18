@@ -36,8 +36,3 @@ def shoe_detail(request, id):
                             'comment_form':comment_form,
                         })
 
-# def add_review(request, id):
-#     """Add review page"""
-#     shoe = Shoe.objects.get(pk=id)
-#     if request.PO
-#     return render(request, 'add_review.html', {'shoe':shoe})

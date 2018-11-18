@@ -43,7 +43,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 	$('.slider').slick({
-		centerMode: true,
 		dots: true,
 		infinite: true,
 		speed: 300,

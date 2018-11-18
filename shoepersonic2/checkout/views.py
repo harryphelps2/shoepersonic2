@@ -164,14 +164,14 @@ def submit_order(request):
         
         if charge.paid:
             messages.success(request, "You have successfully paid!")
-            request.session['basket'] = {}
             send_mail(
-                'Your order',
-                'Thank you for your order. We will be in touch when it has been accepted.',
+                'Shoepersonic: Your Order',
+                'Thanks so much for your order! We will be in touch when it has been accepted. Harry from Shoepersonic',
                 'shoepersonic@gmail.com',
-                [request.session.get('email', None)],
+                ['shoepersonic@gmail.com'],
                 fail_silently=False,
             )
+            request.session['basket'] = {}
             return redirect(reverse('order_submitted'))
         else:
             messages.error(request, "Unable to take payment.")

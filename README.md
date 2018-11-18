@@ -1,6 +1,6 @@
 # Shoepersonic.com
 
-[![Build Status](https://travis-ci.org/harryphelps2/shoepersonic.svg?branch=master)](https://travis-ci.org/harryphelps2/shoepersonic)
+[![Build Status](https://travis-ci.org/harryphelps2/shoepersonic2.svg?branch=master)](https://travis-ci.org/harryphelps2/shoepersonic2)
 
 A website to answer the most important question of all:
 

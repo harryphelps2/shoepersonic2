@@ -11,14 +11,13 @@
                         <img class="card-img-top shoe-card__image" src="/media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
                     </a>
                 <div class="card-body shoe-card__text">
-                    <h5 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h5>
+                    <h3 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h3>
                     <p class="card-text">{{ shoe.strapline }}</p>
                     <ul>
                         <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
                         <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
-                        <li>Fit status: {{ shoe.fit_ranking }}</li> 
+                        <li>Fit status: {{ shoe.fit_descriptor }}</li> 
                         <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
-                        <li>Includes {{ shoe.spikes_included }}</li>
                     </ul>  
                 </div>
                 <div class="card-footer shoe-card__footer">
