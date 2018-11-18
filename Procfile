@@ -1,0 +1,1 @@
+web: gunicorn shoepersonic2.wsgi:application
