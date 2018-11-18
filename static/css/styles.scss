@@ -9,14 +9,6 @@ $primary-button-red: linear-gradient(rgb(246, 6, 6), rgb(255, 131, 131));
     height: 100%;
 }
 
-.container-fluid{
-    padding: 0;
-}
-
-#background{
-    padding: 0;
-}
-
 h1{
     font-family: $title-font;
     font-style: italic;
@@ -315,6 +307,10 @@ nav{
 }
 /* All Shoes Page */
 
+.all-shoes-container{
+    padding: 2%;
+}
+
 .shoe-card{
     padding: 1%;
     margin: 2%;
@@ -388,8 +384,8 @@ nav{
         min-width: 7.0rem;
         
         button{
-            height: 1.5rem;
-            width: 1.5rem;
+            height: 2.5rem;
+            width: 2.5rem;
             color: black;
             border-color: black;
             border-radius: 0.2rem;

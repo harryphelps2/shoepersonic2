@@ -4,14 +4,6 @@
   height: 100%;
 }
 
-.container-fluid {
-  padding: 0;
-}
-
-#background {
-  padding: 0;
-}
-
 h1 {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
@@ -301,6 +293,10 @@ nav {
 }
 
 /* All Shoes Page */
+.all-shoes-container {
+  padding: 2%;
+}
+
 .shoe-card {
   padding: 1%;
   margin: 2%;
@@ -368,8 +364,8 @@ nav {
   min-width: 7rem;
 }
 .price-and-quantity-container__quantity-chooser button {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
   color: black;
   border-color: black;
   border-radius: 0.2rem;
