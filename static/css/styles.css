@@ -48,7 +48,7 @@ p, li, a {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 .nav-dropdown__link {
@@ -161,7 +161,7 @@ p, li, a {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -356,8 +356,8 @@ p, li, a {
   min-width: 7rem;
 }
 .price-and-quantity-container__quantity-chooser button {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
   color: black;
   border-color: black;
   border-radius: 0.2rem;
@@ -367,7 +367,7 @@ p, li, a {
 }
 .price-and-quantity-container__quantity-chooser .quantity {
   font-family: "Open Sans", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   margin: 5%;
 }
@@ -384,13 +384,13 @@ p, li, a {
 }
 .size-container label {
   font-family: "Open Sans", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
 }
 .size-container select {
   font-family: "Open Sans", sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   height: 100%;
   width: 100%;
