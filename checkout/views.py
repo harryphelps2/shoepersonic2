@@ -169,7 +169,7 @@ def submit_order(request):
                 'Thanks so much for your order! We will be in touch when it has been accepted. Harry from Shoepersonic',
                 'shoepersonic@gmail.com',
                 ['shoepersonic@gmail.com'],
-                fail_silently=False,
+                fail_silently=True,
             )
             request.session['basket'] = {}
             return redirect(reverse('order_submitted'))
