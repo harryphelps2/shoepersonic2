@@ -4,7 +4,7 @@
 <p>
 As with any shopping experience, there are terms and conditions that apply to transactions at the Shoepersonic store. 
 If you purchase a product via the Shoepersonic store, these Terms and Conditions apply 
-to the sales contract between you and Shoepersonic along with the <a href="#">Privacy Policy</a>. 
+to the sales contract between you and Shoepersonic along with the <a href="{% url 'privacy_policy' %}">Privacy Policy</a>. 
 You need to be at least 18 years old to place orders on the Shoepersonic store.  
 </p>
 <h2>Returns</h2>
@@ -46,7 +46,7 @@ must also be returned.
 </ul>
 <p>
     For complete details on how to return a product purchased at 
-    the Shoepersonic store, please visit the <a href="#">Returns & Refunds</a>  
+    the Shoepersonic store, please visit the <a href="{% url 'delivery_and_returns' %}">Delivery and Returns</a>  
     help page.
 </p>
 <h2>Pricing and Price Reductions / Corrections</h2>
@@ -97,8 +97,9 @@ must also be returned.
     have placed your order, we will provide you with an order number.   
 </p>
 <p>
-    Within a few minutes after we receive your order, we’ll 
-    email you an order confirmation. As with the order number, 
+    Within a few hours after we receive your order, we’ll 
+    email you an order confirmation that your order has been received. 
+    As with the order number, 
     the order confirmation email does not signify our acceptance 
     of your order; we are simply confirming that we received 
     your order. Once we have processed your order and prepared 
@@ -115,14 +116,14 @@ must also be returned.
     The Shoepersonic store offers a standard delivery options. 
     The standard delivery is free of charge for any order exceeding 
     a certain amount. For orders below this amount, shipping fees 
-    will apply. Please visit the <a href="#">Dispatch & Delivery</a> help page for 
+    will apply. Please visit the <a href="{% url 'delivery_and_returns' %}">delivery and returns</a> help page for 
     the current shipping rates and fees. Your order will be shipped 
     once all products of your order are available for a bundle delivery. 
     Orders will not be accepted and products will not be delivered 
     to any address outside the United Kingdom.
 </p>
 <p>
-    Please review the <a href="#">Dispatch & Delivery</a> help page to learn more 
+    Please review the <a href="{% url 'delivery_and_returns' %}">delivery and returns</a> help page to learn more 
     about how and when you will receive the products you purchased 
     from the Shoepersonic store. Please note that the actual delivery 
     of your order can be impacted by many events beyond 
