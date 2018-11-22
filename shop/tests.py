@@ -10,7 +10,7 @@ class ShopTests(TestCase):
         self.assertEqual(str(testname), "Super fast shoe")
     
     def test_add_to_basket_happy_path(self):
-        shoe = Shoe.objects.create(brand='Best Brand', name='Top Shoe', colour='Red', price=500)
+        shoe = Shoe.objects.create(id=1, brand='Best Brand', name='Top Shoe', colour='Red', price=500)
 
         client = Client()
 
@@ -24,7 +24,7 @@ class ShopTests(TestCase):
             'size': 10,
         })
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/basket')
+        self.assertEqual(response.url, '/basket/')
         self.assertEqual(client.session['basket'], {'1-10': {'quantity': 1, 'size': '10'}})
 
         # View basket page
