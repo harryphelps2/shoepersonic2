@@ -172,19 +172,20 @@ def submit_order(request):
                 fail_silently=True,
             )
             request.session['basket'] = {}
-            return redirect(reverse('order_submitted'))
+            return redirect(reverse('order_submitted', kwargs={'order_id': order.id}))
         else:
             messages.error(request, "Unable to take payment.")
     else:
         messages.error(request, "Unable to take payment on that card")
     return render(request, 'checkout.html')
 
-def order_submitted(request):
+def order_submitted(request, order_id):
     """Congratulations and save details for next time"""
     # If the user is authenticated
     profile_details = ['first_name', 'last_name', 'running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'postcode']
     details_to_update = False
     marketing_opted_in = False
+    order_id = order_id
     # registration_form = UserRegistrationForm(request.POST or None, initial={'email': request.session['email']})
     profile_details = {
         'email' : request.session.get('email', None), 
@@ -228,4 +229,5 @@ def order_submitted(request):
         'details_to_update': details_to_update, 
         'marketing_opted_in': marketing_opted_in, 
         'registration_form': registration_form,
+        "order_id": order_id,
         })
