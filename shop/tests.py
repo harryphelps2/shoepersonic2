@@ -24,7 +24,7 @@ class ShopTests(TestCase):
             'size': 10,
         })
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/basket/')
+        self.assertEqual(response.url, '/basket')
         self.assertEqual(client.session['basket'], {'1-10': {'quantity': 1, 'size': '10'}})
 
         # View basket page
