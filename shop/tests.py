@@ -15,7 +15,7 @@ class ShopTests(TestCase):
         client = Client()
 
         # View the product page
-        response = client.get(f'/shop/shoe_detail/{0}/'.format(shoe.id))
+        response = client.get('/shop/shoe_detail/{0}/'.format(shoe.id))
         self.assertEqual(response.status_code, 200)
 
         # Add product to the basket
