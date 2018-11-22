@@ -19,7 +19,7 @@ class ShopTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Add product to the basket
-        response = client.post(f'/basket/add/{shoe.id}/', {
+        response = client.post(r'/basket/add/{shoe.id}/$', {
             'quantity': 1,
             'size': 10,
         })
