@@ -170,13 +170,13 @@ nav{
         font-family: $title-font;
         font-style: italic;
         font-weight: bold;
-        font-size: 2.7rem;
+        font-size: 2.6rem;
         font-weight: 700;
         line-height: 1.2;
     }
     &__strapline{
         font-family: $text-font;
-        font-size: 0.9rem;
+        font-size: 1.0rem;
     }
     &__button{
         font-size: 1.5rem;
@@ -265,6 +265,7 @@ nav{
 
 /* About us */
 .about-us{
+    max-width: 1000px;
     &__section{
         display: block;
         &__sub-section{
@@ -393,8 +394,8 @@ nav{
     
     &__quantity-chooser{
         display: inline-block;
-        width: 40%;
-        min-width: 7.0rem;
+        width: 50%;
+        min-width: 8.0rem;
         
         button{
             height: 2.5rem;
