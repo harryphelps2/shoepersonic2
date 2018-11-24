@@ -165,7 +165,7 @@ nav {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -179,9 +179,9 @@ nav {
 
 @media (min-width: 576px) {
   .front-page-hero-text__title {
-    font-size: 5rem;
+    font-size: 5.5rem;
     font-weight: bold;
-    line-height: 2.2;
+    line-height: 2;
   }
   .front-page-hero-text__strapline {
     font-family: "Open Sans", sans-serif;

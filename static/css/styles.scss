@@ -170,7 +170,7 @@ nav{
         font-family: $title-font;
         font-style: italic;
         font-weight: bold;
-        font-size: 2.5rem;
+        font-size: 3.0rem;
         font-weight: 700;
         line-height: 1.2;
     }
@@ -185,9 +185,9 @@ nav{
 @media (min-width: 576px) { 
     .front-page-hero-text{
         &__title{
-            font-size: 5.0rem;
+            font-size: 5.5rem;
             font-weight: bold;
-            line-height: 2.2;
+            line-height: 2.0;
         }
         &__strapline{
             font-family: $text-font;
