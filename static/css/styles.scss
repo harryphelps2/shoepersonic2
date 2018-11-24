@@ -263,6 +263,18 @@ nav{
 
 }
 
+/* About us */
+.about-us{
+    &__section{
+        display: block;
+        &__sub-section{
+            display: block;
+        }
+    }
+}
+
+
+
 /* Accounts */
 .login-form{
     padding-top: 5%;
@@ -366,11 +378,12 @@ nav{
 }
 
 .price-and-quantity-container{
-        
+    // display: flex-nowrap; 
+    // justify-content: space-between;   
     &__price {
         display: inline-block;
-        width: 50%;
-        padding-left: 4%;
+        width: 40%;
+        // padding-left: 4%;
         h3{
             font-family: $text-font;
             font-size: 2.5rem;
@@ -629,7 +642,7 @@ nav{
         width: 100%;
         padding: 1.0rem 1.2rem;
         border-radius: 4px;
-        border: 1px solid transparent;
+        border: 1px solid;
         box-shadow: 0 1px 3px 0 #636569;
         margin-bottom: 3%;
     }
@@ -732,11 +745,23 @@ nav{
         img{
             width: 3.0rem;
         }
+        &__social-media{
+            display: flex-nowrap;
+            justify-content: space-around;
+            i{
+                font-size: 2.0rem;
+            }
+        }
+        &__strava{
+            i{
+                font-size: 3.0rem;
+            }
+        }
     }
     &__kent{
         display: block;
         text-align: center;
-        margin-top: 4%;
+        margin-top: 2%;
         padding-bottom: 2%;
         color: white;
         img{

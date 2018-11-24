@@ -1,21 +1,73 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
+{% load static %}
 {% block content %}
 
-<div>
+<div class="px-4 about-us">
     <h1>About us</h1>
-    <p>We love running. We run in the city all week and then 
-        race around the Great British Countryside all weekend. We've always struggled to find stock of 
-        the fastest running shoes in one place. Running shops always have a limited choice of 
-        racing shoes and online the choice is overwhelming but there is never enough detail about what they are 
-        like to run in to make an informed decision. We're here to change that. We take the leading 
-        models of a particular type of shoe and go and run around in them... a lot. We then report back on the best aspects of
-        each shoe to help you make the best investment.
-    </p>
-    <p>
-        Our pricing fairly reflects the cost of selling the shoe to you. We're a small family run business and we don't have 
-        any economies of scale. We buy all the shoes we test and seek to highlight their best features so you can make an informed decision.
-    </p>
+    <div class="about-us__section">
+        <h2>What we do</h2>
+        <p>Shoepersonic is a site dedicated to trying out running shoes. Every season we'll concentrate on a particular type of shoe. We'll
+             buy a selection of models, run in them and tell you what we think on YouTube. You can then make an informed decision about which one to buy.
+        </p>
+    </div>
+    <div>
+        <h2>Our Reviews</h2>
+        <p>Ultimately a shoe is a shoe. It's not going to fly you to the moon. When doing our reviews, I have a decent run in the shoe and then 
+            talk about how it feels to run in. You can probably tell it is completely unscripted. If any feature makes a difference to that experience,
+             I'll mention it. If it doesn't I won't.
+        </p>
+        <p>
+            When we review shoes, we do want you to buy them. If we buy a shoe and don't like it we won't sell it. But each shoe we test, we try and 
+            think about the features that make it better for a particular type of runner or another. We'll always focus on the positives and if we 
+            haven't got anything nice to say we won't say anything.
+        </p>
+    </div>
+    <div class="about-us__section">
+        <h2 class="pb-2">Who are we?</h2>
+        <div class="about-us__section__sub-section">
+            <h4>Harry, Founder</h4>
+            <img class="rounded" src="media/about_us/harry_founder.png" alt="Harry the Founder" style="width: 20rem;">
+            <p class="py-3">I love running. Like many people working who work in London I avoid the tube and run into work 
+                and as much as I can during the week. Then at the weekend I do a Park run and a nice long run in the countryside. I've always found buying 
+                running shoes on the internet very convenient but also stressful. Descriptions are always full of marketing jargon, but never 
+                talk about what they are like to run in. 
+            </p>  
+        </div>
+        <div class="about-us__section__sub-section">
+            <h4>Louis, Co-Founder</h4>
+            <p class="py-3">
+            My younger brother Louis describes himself as a fair weather middle distance runner.
+            He'll turn on to a park run on Saturday and obliterate the field and is responsible for more of my PBs than I can count. 
+            He helps out with the running of our website
+                and venture.
+            </p>
+        </div>
+        <div class="about-us__section__sub-section">
+            <h4>Robbie, Cameraman</h4>
+            <img class="rounded" src="media/about_us/robbie_cameraman.jpg" alt="Robbie the cameraman" style="width: 20rem;">
+            <p class="py-3">Robbie studied Zoology at university and loves filming wildlife. He also does pet portraiture. He's exceptionally
+                skilled and knowledgable, and a complete perfectionist and if you want to see more go to <a href="http://robbieharman.com">robbieharman.com</a>.
+            </p>
+        </div>
+        <div class="about-us__section__sub-section">
+            <h4>Luke, Photography</h4>
+            <img class="rounded" src="media/about_us/luke_photographer.jpg" alt="Luke the photographer" style="width: 20rem;">
+            <p class="py-3">We do all our our own photography which means some poor sod has to position themselves 
+                in awkward places to get us the best shot. That poor sod is Luke, civil engineer by day,
+                photographer by night. 
+            </p>
+        </div>
+    </div>
+    <div>
+        <h2>Running Clubs</h2>
+        <p>Running clubs are the foundation of the running community in the UK. Every single weekend, when the rest of the country is in bed, there is 
+            an army of people (usually volunteers) opening the track, laying out cones or tying tape to trees. When we set up Shoepersonic, we 
+            wanted to show our appreciation for these people and we do that by donating a percentage of our profits to them. When you buy shoes 
+            from us you'll be asked to type in your running club. At the end of the year, we then donate 5% of the profits from that sale to that club.
+             Just our way of saying thank you.
+        </p>
+    </div>
 </div>
 
 {% endblock %}
