@@ -669,13 +669,13 @@ nav {
 .footer {
   background-color: #343a40;
 }
+.footer a:hover {
+  color: lightblue;
+}
 .footer__links {
   display: block;
   text-align: center;
   padding-top: 4%;
-}
-.footer__links :hover {
-  color: lightblue;
 }
 .footer__contact {
   display: block;
@@ -683,9 +683,6 @@ nav {
   margin-top: 4%;
   padding-bottom: 2%;
   color: white;
-}
-.footer__contact a:hover {
-  color: lightblue;
 }
 .footer__contact img {
   width: 3rem;
@@ -695,7 +692,7 @@ nav {
   justify-content: space-around;
 }
 .footer__contact__social-media i {
-  font-size: 2rem;
+  font-size: 4rem;
 }
 .footer__contact__strava i {
   font-size: 3rem;
@@ -723,9 +720,6 @@ nav {
     padding-top: 4%;
     font-size: 1.5rem;
   }
-  .footer__links :hover {
-    color: lightblue;
-  }
   .footer__contact {
     display: block;
     text-align: center;
@@ -733,9 +727,6 @@ nav {
     padding-bottom: 2%;
     font-size: 1.5rem;
     color: white;
-  }
-  .footer__contact :hover {
-    color: lightblue;
   }
   .footer__kent {
     display: block;

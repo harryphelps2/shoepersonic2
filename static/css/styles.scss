@@ -724,14 +724,13 @@ nav{
 
 .footer{
     background-color: #343a40;
-
+    a:hover{
+        color: lightblue;
+    }
     &__links{
         display: block;
         text-align: center;
         padding-top: 4%;
-        :hover{
-            color: lightblue;
-        }
 
     }
     &__contact{
@@ -740,9 +739,6 @@ nav{
         margin-top: 4%;
         padding-bottom: 2%;
         color: white;
-        a:hover{
-            color: lightblue;
-        }
         img{
             width: 3.0rem;
         }
@@ -750,7 +746,7 @@ nav{
             display: flex-nowrap;
             justify-content: space-around;
             i{
-                font-size: 2.0rem;
+                font-size: 4.0rem;
             }
         }
         &__strava{
@@ -783,9 +779,6 @@ nav{
             margin-top: 10%;
             padding-top: 4%;
             font-size: 1.5rem;
-            :hover{
-                color: lightblue;
-            }
     
         }
         &__contact{
@@ -795,9 +788,6 @@ nav{
             padding-bottom: 2%;
             font-size: 1.5rem;
             color: white;
-            :hover{
-                color: lightblue;
-            }
         }
         &__kent{
             display: block;
