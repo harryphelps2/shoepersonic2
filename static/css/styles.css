@@ -712,15 +712,15 @@ nav {
   color: white;
 }
 
-a.facebook:hover {
+.facebook:hover {
   color: #4267b2;
 }
 
-a.youtube:hover {
+.youtube:hover {
   color: #ff0000;
 }
 
-a.strava:hover {
+.strava:hover {
   color: #fc4c02;
 }
 
