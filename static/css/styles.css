@@ -712,6 +712,18 @@ nav {
   color: white;
 }
 
+a.facebook:hover {
+  color: #4267b2;
+}
+
+a.youtube:hover {
+  color: #ff0000;
+}
+
+a.strava:hover {
+  color: #fc4c02;
+}
+
 @media (min-width: 576px) {
   .footer__links {
     display: flex;
