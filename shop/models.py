@@ -60,7 +60,7 @@ class CustomerReview(models.Model):
     customer_fit_rating = models.IntegerField(null=True, blank=True)
     customer_support_rating = models.IntegerField(null=True, blank=True) 
     customer_race_experience = models.TextField(null=True, blank=True)
-    customer_review = models.TextField(null=True, blank=True)
+    customer_review = models.TextField(null=True, blank=False)
 
     def __str__(self):
         review_line = "{0} reviewed {1} on {2}".format(self.user, self.shoe_model, self.date)
