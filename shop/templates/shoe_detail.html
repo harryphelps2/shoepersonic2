@@ -60,7 +60,7 @@
     {% elif not reviews and user.is_authenticated %}
         <div class="customer-review">
             <h3 class="customer-review__title">Tell us what you think</h3>
-            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div>
                     {{ comment_form|crispy }}
@@ -84,11 +84,11 @@
     {% else %}
         <div class="customer-review">
             <h3 class="customer-review__title">Tell us what you think</h3>
-            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div>
                     {{ comment_form|crispy }}
-                    <button type="submit" class="btn btn-block btn-secondary add-review">Add comment</button>
+                    <button type="submit" class="btn btn-block btn-secondary btn-success add-review">Add comment</button>
                 </div>
             </form>
             <ul class="customer-review__list">
@@ -97,6 +97,12 @@
                     <h4>{{ review.user }} commented on {{ review.date }}</h4>
                     <p>{{ review.customer_review }}</p>
                 </li>
+                {% if review.user == user %}
+                <div class="mt-2">
+                    <a class="btn btn-secondary btn-info" href="{% url 'edit_comment_for_shoe' shoe.id %}">Edit Comment</a>
+                    <a class="btn btn-secondary btn-danger" href="{% url 'delete_comment_for_shoe' shoe.id %}">Delete Comment</a>
+                </div>
+                {% endif %}
                 {% endfor %}
             </ul>
         </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Shoe, Stock, ProductImage, CustomerReview
 from .forms import CommentForm
 from django.utils import timezone
@@ -21,12 +21,6 @@ def shoe_detail(request, id):
     images = ProductImage.objects.filter(shoe_model = shoe.id)
     reviews = CustomerReview.objects.filter(shoe_model = shoe.id)
     comment_form = CommentForm()
-    if request.method == 'POST':
-        comment = CommentForm(request.POST).save(commit=False)
-        comment.shoe_model = shoe
-        comment.date = timezone.now()
-        comment.user = request.user
-        comment.save()
     return render(request, 'shoe_detail.html', 
                         {
                             'shoe':shoe, 
@@ -36,3 +30,27 @@ def shoe_detail(request, id):
                             'comment_form':comment_form,
                         })
 
+def add_comment_for_shoe(request, id):
+    """
+    Add comment for shoe below review
+    """
+    shoe = Shoe.objects.get(pk=id)
+    if request.method == 'POST':
+        comment = CommentForm(request.POST).save(commit=False)
+        comment.shoe_model = shoe
+        comment.date = timezone.now()
+        comment.user = request.user
+        comment.save()
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
+
+def edit_comment_for_shoe(request, id):
+    """
+    Edit comment for a shoe
+    """
+    pass
+    
+def delete_comment_for_shoe(request, id):
+    """
+    Delete comment for a shoe
+    """
+    pass
