@@ -60,7 +60,7 @@
     {% elif not reviews and user.is_authenticated %}
         <div class="customer-review">
             <h3 class="customer-review__title">Tell us what you think</h3>
-            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div>
                     {{ comment_form|crispy }}
@@ -84,19 +84,50 @@
     {% else %}
         <div class="customer-review">
             <h3 class="customer-review__title">Tell us what you think</h3>
-            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'shoe_detail' shoe.id %}" method="post">
+            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
                 {% csrf_token %}
                 <div>
                     {{ comment_form|crispy }}
-                    <button type="submit" class="btn btn-block btn-secondary add-review">Add comment</button>
+                    <button type="submit" class="btn btn-block btn-secondary btn-success add-review">Add comment</button>
                 </div>
             </form>
             <ul class="customer-review__list">
                 {% for review in reviews %}
-                <li class="card customer-review__list-item">
-                    <h4>{{ review.user }} commented on {{ review.date }}</h4>
-                    <p>{{ review.customer_review }}</p>
-                </li>
+                    <li class="card customer-review__list-item">
+                        <h4>{{ review.user }} commented on {{ review.date }}</h4>
+                        <p>{{ review.customer_review }}</p>
+                    </li>
+                    {% if review.user == user %}
+                    <div>
+                        <button type="button" class="btn btn-secondary btn-info edit-comment-button" data-toggle="modal" data-target="#editComment-{{ review.id }}" data-whatever="@mdo">Edit Comment</button>
+                        <a class="btn btn-secondary btn-danger delete-comment-button" href="{% url 'delete_comment_for_shoe' shoe.id review.id %}">Delete Comment</a>
+                    </div>
+                    <div class="modal fade" id="editComment-{{ review.id }}" tabindex="-1" role="dialog" aria-labelledby="editCommentLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editCommentLabel">Edit Comment</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="edit-comment-{{ review.id }}" name="edit-comment-{{ review.id }}" action="{% url 'edit_comment_for_shoe' shoe_id=shoe.id comment_id=review.id %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Comment:</label>
+                                            <textarea class="form-control" form="edit-comment-{{ review.id }}" name="updated-comment" id="message-text">{{ review.customer_review }}</textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" form="edit-comment-{{ review.id }}" class="btn btn-secondary btn-success">Update Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

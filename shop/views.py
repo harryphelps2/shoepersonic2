@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Shoe, Stock, ProductImage, CustomerReview
 from .forms import CommentForm
 from django.utils import timezone
@@ -21,12 +21,6 @@ def shoe_detail(request, id):
     images = ProductImage.objects.filter(shoe_model = shoe.id)
     reviews = CustomerReview.objects.filter(shoe_model = shoe.id)
     comment_form = CommentForm()
-    if request.method == 'POST':
-        comment = CommentForm(request.POST).save(commit=False)
-        comment.shoe_model = shoe
-        comment.date = timezone.now()
-        comment.user = request.user
-        comment.save()
     return render(request, 'shoe_detail.html', 
                         {
                             'shoe':shoe, 
@@ -36,3 +30,41 @@ def shoe_detail(request, id):
                             'comment_form':comment_form,
                         })
 
+def add_comment_for_shoe(request, id):
+    """
+    Add comment for shoe below review
+    """
+    shoe = Shoe.objects.get(pk=id)
+    if request.method == 'POST':
+        comment = CommentForm(request.POST).save(commit=False)
+        comment.shoe_model = shoe
+        comment.date = timezone.now()
+        comment.user = request.user
+        comment.save()
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
+
+def edit_comment_for_shoe(request, shoe_id, comment_id):
+    """
+    Edit comment for a shoe
+    """
+    shoe = Shoe.objects.get(pk=shoe_id)
+    comment = CustomerReview.objects.get(pk=comment_id)
+    if request.method == 'POST':
+        updated_comment = request.POST['updated-comment']
+        if updated_comment == '':
+            return redirect(reverse('delete_comment_for_shoe', args=[shoe.id, comment.id]))
+        comment.customer_review = updated_comment
+        comment.save()
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
+    
+
+def delete_comment_for_shoe(request, shoe_id, comment_id):
+    """
+    Delete comment for a shoe
+    """
+    print("Deleting comment now")
+    shoe = Shoe.objects.get(pk=shoe_id)
+    comment = CustomerReview.objects.get(pk=comment_id)
+    comment.delete()
+    print("Deleted")
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
