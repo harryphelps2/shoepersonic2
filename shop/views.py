@@ -43,14 +43,28 @@ def add_comment_for_shoe(request, id):
         comment.save()
     return redirect(reverse('shoe_detail', args=[shoe.id]))
 
-def edit_comment_for_shoe(request, id):
+def edit_comment_for_shoe(request, shoe_id, comment_id):
     """
     Edit comment for a shoe
     """
-    pass
+    shoe = Shoe.objects.get(pk=shoe_id)
+    comment = CustomerReview.objects.get(pk=comment_id)
+    if request.method == 'POST':
+        updated_comment = request.POST['updated-comment']
+        if updated_comment == '':
+            return redirect(reverse('delete_comment_for_shoe', args=[shoe.id, comment.id]))
+        comment.customer_review = updated_comment
+        comment.save()
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
     
-def delete_comment_for_shoe(request, id):
+
+def delete_comment_for_shoe(request, shoe_id, comment_id):
     """
     Delete comment for a shoe
     """
-    pass
+    print("Deleting comment now")
+    shoe = Shoe.objects.get(pk=shoe_id)
+    comment = CustomerReview.objects.get(pk=comment_id)
+    comment.delete()
+    print("Deleted")
+    return redirect(reverse('shoe_detail', args=[shoe.id]))
