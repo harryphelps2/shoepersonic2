@@ -11,13 +11,13 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>  
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<!-- 
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+
         <link rel="stylesheet" type="text/css" href="../../../static/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href='../../../static/slick/slick-theme.css'/>
-        <link rel="stylesheet" href="../../../static/css/styles.css"> -->
+        <link rel="stylesheet" href="../../../static/css/styles.css">
     </head>
     <body>
         <div class="container-fluid p-0">
@@ -33,6 +33,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-dropdown__link" href="{% url 'our_reviews' %}">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-dropdown__link" href="#">Articles</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-dropdown__link" href="{% url 'about_us' %}">About us</a>
@@ -115,13 +118,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
-        <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
+        <!-- <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script> -->
         
         <script src="https://js.stripe.com/v3/"></script>
         <script src="{% static 'js/stripe.js' %}"></script>
         <script src="{% static 'js/script.js' %}"></script>
         
-        <!-- <script type="text/javascript" src="../../../static/slick/slick.min.js"></script>
-        <script src="../../../static/js/script.js"></script> -->
+        <script type="text/javascript" src="../../../static/slick/slick.min.js"></script>
+        <script src="../../../static/js/script.js"></script>
     </body>
 </html>
