@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <h1>Welcome to the Hangar</h1>
+    <p>Answering the most important question of all...</p>
+    <h2>Will it make me faster?</h2>
+
+    <div class="card text-center">
+        <div class="card-header">
+            Featured
+        </div>
+        <a href="#">
+            <div class="card-body">
+                <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                <h3 class="card-title">Do I need cross country spikes?</h3>
+                <p class="card-text">Cross country spike rookie Bill Phelps takes us through his first
+                    race experience with his new Adidas XCS spikes.
+                </p>
+            </div>
+        </a>
+        <div class="card-footer text-muted">
+                Bill Phelps
+        </div>
+    </div>
+</div>
+
+{% endblock %}
