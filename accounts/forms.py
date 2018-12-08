@@ -22,15 +22,15 @@ class UserLoginForm(forms.Form):
         return super(UserLoginForm, self).clean()
 
 class UserRegistrationForm(UserCreationForm):
-    username = forms.CharField()
-    email = forms.CharField()
-    password1 = forms.CharField(label="Password",widget=forms.PasswordInput) 
-    password2 = forms.CharField(label="Retype Password",widget=forms.PasswordInput)  
+    username = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'Username'}))
+    email = forms.CharField(label="",widget=forms.TextInput(attrs={'placeholder':'Email Address'}))
+    password1 = forms.CharField(label="Password",widget=forms.PasswordInput(attrs={'placeholder':'Password'})) 
+    password2 = forms.CharField(label="Retype Password",widget=forms.PasswordInput(attrs={'placeholder':'Confirm Password'}))  
 
     class Meta:
         model = User
         fields = ['username','email','password1','password2']
-    
+ 
     def __init__(self, *args, **kwargs): 
         super(UserRegistrationForm, self).__init__(*args, **kwargs) 
         # remove username
@@ -64,3 +64,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('marketing_opt_in','running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'postcode')
+ 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email','first_name','last_name')

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block page_title %}Checkout{% endblock %}
-{% block page_header %}Checkout{% endblock %}
+{% block page_title %}Contact details{% endblock %}
 {% block content %}
 <nav class="nav nav-fill checkout-nav">
     <a class="nav-item nav-link active checkout-nav__contact" href="#">1. Contact <i class="fa fa-angle-right"></i></a>
@@ -9,12 +8,12 @@
     <a class="nav-item nav-link disabled checkout-nav__payment" href="#">3. Payment <i class="fa fa-angle-right"></i></a>
 </nav>
 <div class="checkout-basket">
-    <h5>Your basket</h5>    
+    <h2>Your Basket:</h2>    
     <ul class="list-group">
     {% for item in basket_items %}
         <li class="list-group-item d-flex justify-content-between">
             <div>
-                <h6>{{ item.product.brand }} {{ item.product.name }}</h6>
+                <h6>{{ item.quantity }} x {{ item.product.brand }} {{ item.product.name }}</h6>
             </div>
             <div>
                 <h6>£{{ item.product.price }}</h6> 
@@ -29,7 +28,7 @@
     </ul>
 </div>
 <form class="order-details-form" action="{% url 'contact_details' %}" method="post" role="form">
-    <h5>Contact details</h5>
+    <h2>Contact details:</h2>
     {% csrf_token %}
     {{ contact_form|crispy }}
     <button class="btn btn-block btn-primary btn-lg btn-danger next-button" type="submit">Next</button>

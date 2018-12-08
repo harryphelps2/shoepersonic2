@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
+{% block page_title %}cross country running - xc spikes | Shoepersonic{% endblock %}
+{% block page_description %}This season's top 5 cross country running spikes reviewed and compared.{% endblock %}
 {% block content %}
-<div class="container-fluid px-2">
-<h1>This season's best cross country spikes all in one place</h1>
-    <p>Check out our video review and see all 5 in action <a href="{% url 'our_reviews' %}">here</a>.</p>
+<div class="container-fluid">
+<h1>This Season's Best Cross Country Spikes</h1>
+    <h2 class="mx-1 my-4">See all 5 in action in our <a href="{% url 'our_reviews' %}">video review</a>.</h2>
     <div class="row">
         {% for shoe in all_shoes %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-0">
-            <div class="card shoe-card">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-0 mb-3">
+            <div class="card ">
                     <a href="{% url 'shoe_detail' shoe.id %}">
                         <img class="card-img-top shoe-card__image" src="/media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}">
                     </a>
                 <div class="card-body shoe-card__text">
-                    <h3 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h3>
-                    <p class="card-text">{{ shoe.strapline }}</p>
+                    <h2 class="card-title">{{ shoe.brand }} {{ shoe.name }}</h2>
+                    <h3 class="card-text">{{ shoe.strapline }}</h3>
                     <ul>
-                        <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
-                        <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
+                        <li>Weight: {{ shoe.weight }} g</li>
+                        <li>Wet-weight: {{ shoe.wet_weight }} g</li>
                         <li>Fit status: {{ shoe.fit_descriptor }}</li> 
-                        <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
                     </ul>  
                 </div>
                 <div class="card-footer shoe-card__footer">

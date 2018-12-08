@@ -23,6 +23,7 @@ from home import urls as home_urls
 from shop import urls as shop_urls
 from basket import urls as basket_urls
 from checkout import urls as checkout_urls
+from articles import urls as article_urls
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -32,4 +33,5 @@ urlpatterns = [
     path('shop/', include(shop_urls)),
     path('basket/', include(basket_urls)),
     path('checkout/', include(checkout_urls)),
+    path('articles/', include(article_urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

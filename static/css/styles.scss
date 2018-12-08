@@ -40,7 +40,7 @@ h5{
     font-weight: 600;
 }
 
-p,li,a{
+p,li,a, td{
     font-family: $text-font;
 }
 
@@ -50,6 +50,43 @@ textarea{
     height: 5rem;
     border-color: black;
     border-radius: 0.2rem;
+}
+
+input{
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #636569;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    margin-bottom: 2%;
+}
+label{
+    display: None;
+}
+.checkbox{
+    display: block;
+}
+.profile{
+    input{
+        width: 100%;
+        max-width: 500px;
+        padding: 0.5%;
+    }
+    label{
+        display: inline;
+    }
+    .checkboxinput{
+        width: 1.0rem;
+        box-shadow: None;
+    }
+    button{
+        max-width: 500px;
+    }
+}
+
+
+.help-block{
+    display: none;
 }
 
 /* Navbar */
@@ -66,13 +103,15 @@ nav{
     }
     &__link{
         font-family: $text-font;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         color: white;
         text-decoration: none;
+        transition: 0.5s;
         &:hover{
             font-style: italic;
             text-decoration: none;
-            transition: 0.3s;
+            font-size: 1.8rem;
+            transition: 0.5s;
             color: white;
         }
     }
@@ -80,10 +119,11 @@ nav{
         font-style: italic;
         color: white;
         text-decoration: none;
+        transition: 0.5s;
         &:hover{
             font-size: 1.6rem;
             text-decoration: none;
-            transition: 0.3s;
+            transition: 0.5s;
             color: white;
         }
     }
@@ -115,8 +155,8 @@ nav{
             display: inline;
             font-family: $text-font;
             font-size: 1.5rem;
-            padding-right: 1.0rem;
-            padding-left: 1.0rem;
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
             &:hover{
                 font-style: italic;
                 text-decoration: none;
@@ -178,7 +218,7 @@ nav{
         font-family: $title-font;
         font-style: italic;
         font-weight: bold;
-        font-size: 2.6rem;
+        font-size: 2.7rem;
         font-weight: 700;
         line-height: 1.2;
     }
@@ -234,6 +274,11 @@ nav{
             margin-bottom: 1%;
             font-size: 2.5rem;
             text-align: center;
+            transition: 0.5s;
+            &:hover{
+                font-size: 3.5rem;
+                transition: 0.5s;
+            }
         }
     }
 }
@@ -249,9 +294,6 @@ nav{
         }
     }
     .front-page-info{
-        margin-top: 5%;
-        margin-bottom: 5%;
-    
         &__item{
             font-family: $text-font;
             font-weight: 600;
@@ -263,8 +305,13 @@ nav{
             i{
                 margin-right: 5%;
                 margin-bottom: 5%;
-                font-size: 2.5rem;
+                font-size: 4.5rem;
                 text-align: center;
+                transition: 0.5s;
+                &:hover{
+                    font-size: 5.5rem;
+                    transition: 0.5s;
+                }
             }
         }
     }
@@ -286,13 +333,24 @@ nav{
 
 /* Accounts */
 .login-form{
-    padding-top: 5%;
-    &__button{
-        margin-top: 3%;
-        font-family: $text-font;
-        font-weight: 700;
+    max-width: 500px;
+    input{
+        padding: 1%;
+        width: 100%;
     }
 }
+
+.reset-password{
+    max-width: 600px;
+    label{
+        display: block;
+    }
+    input{
+        padding: 1%;
+        width: 100%;
+    }
+}
+
 .password-reset-sent{
     &__heading{
         margin-top: 3%;
@@ -310,9 +368,16 @@ nav{
 }
 
 .password-reset-confirm-form{
-    margin: 5%;
-    button{
-        margin-top: 3%;
+    max-width: 500px;
+    label{
+        display: block;
+    }
+    input{
+        width: 100%;
+        padding: 1%;
+    }
+    li{
+        font-size: 0.75rem;
     }
 }
 
@@ -327,15 +392,6 @@ nav{
     }
 }
 /* All Shoes Page */
-
-.all-shoes-container{
-    padding: 2%;
-}
-
-.shoe-card{
-    padding: 1%;
-    margin: 2%;
-}
 
 
 /* Shoe Detail Page */
@@ -355,13 +411,11 @@ nav{
     }
     
     &__slider{
-        margin-top: 4%;
+        max-width: 1000px;
     }
-    @media (min-width: 576px) {
+    @media (min-width: 1000px) {
         &__slider{
-            display: bblock;
-            width: 100%;
-            
+            display: inline-block;      
         }
     }
 
@@ -372,17 +426,29 @@ nav{
             width: 100%;
         }
     }
+
+    &__stats{
+        max-width: 500px;
+        @media (min-width: 576px) {
+            display: inline-block;
+            vertical-align: top;
+            align: left;
+
+        }
+    }
+    &__review{
+        max-width: 1000px;
+    }
 } 
 
 .add-to-basket{
     display: block;
     width: 100%;
-    margin: 5%;
+    max-width: 400px;
     
     @media (min-width: 576px) {
         display: inline-block;
-        margin: 0;
-        padding-left: 10%;
+        vertical-align: top;
     }
 }
 
@@ -526,12 +592,14 @@ nav{
         height: auto;
         width: 10%;
     }
+    &__previous-orders{
+        max-width: 600px;
+    }
 }
 
 /* Basket */
 
 .basket{
-    margin: 2%;
     h2{
         font-family: $title-font;
         font-style: italic;
@@ -541,84 +609,76 @@ nav{
         line-height: 1.2;  
     }
     &__row{
-        display: block;
-        margin-top: 5%;
-        padding: 2.0%;
-        border: 1px solid rgb(105, 105, 105);
-    }
-    &__image{
-        display: inline-block;
-        vertical-align: top;
-        width: 8.0rem;
-    }
-    &__adjust{
-        display: inline-block;
-        width: 60%;
-
-        h5{
-            font-family: $text-font;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        &__quantity{
+        display: flex-nowrap;
+        max-width: 1000px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0 1px 3px 0 #636569;
+        &__image{
             display: inline-block;
-            width: 40%;
-            margin-top: 3%;
-            button{
-                height: 1.5rem;
-                width: 1.5rem;
-                padding-bottom: 0.1rem;
-                color: black;
-                font-family: $text-font;
-                vertical-align: top;
-                i{
-                    color: white;
+            vertical-align: top;
+            width: 8.0rem;
+        }
+        &__details{
+            display: inline-block;
+            width: 50%;
+        }
+        &__adjust{    
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+            &__quantity{
+                display: inline-block;
+                width: 40%;
+                vertical-align: bottom;
+                button{
+                    height: 2.5rem;
+                    width: 2.5rem;
+                    padding-bottom: 0.1rem;
+                    color: black;
+                    font-family: $text-font;
+                    vertical-align: bottom;
+                    i{
+                        color: white;
+                    }
+                }
+                .new_quantity{
+                    font-weight: 600;
+                    font-size: 1.5rem;
+                    vertical-align: bottom;
                 }
             }
-            .new_quantity{
+            &__adjust-button{
+                display: inline-block;
+                width: 50%;
                 font-weight: 600;
                 font-size: 1.5rem;
                 vertical-align: top;
             }
         }
-        &__size{
-            display: inline-block;
-            width: 45%;
-            font-weight: 500;
-            font-size: 1.2rem;
-        }
-        &__update-button{
-            margin-top: 5%;
-            font-family: $text-font;
-            font-size: 1.2rem;
-        }
+    
     }
     &__checkout-button{
-        margin-top: 10%;
-        margin-bottom: 10%;
+        max-width: 1000px;
     }
-}
-
-.basket-total{
-    margin-top: 10%;
 }
 
 // Checkout contact details
 .checkout-basket{
     margin: 5%;
-    font-family: $text-font;   
+    font-family: $text-font;
+    max-width: 700px;
+    ul{
+        border-radius: 4px;
+        box-shadow: 0 1px 3px 0 #636569;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
 
     &__total{
         font-size: 1.3rem;
         font-weight: 900;
     }
-
-
-}
-
-.contact-details{
-    margin: 5%;
 }
 
 .checkout-nav{
@@ -635,9 +695,12 @@ nav{
 @media (min-width: 576px) {
     .checkout-nav{
         a{
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
     }
+}
+.nav-link{
+    padding: 0;
 }
 
 .order-details-form{
@@ -653,15 +716,15 @@ nav{
         width: 100%;
         padding: 1.0rem 1.2rem;
         border-radius: 4px;
-        border: 1px solid;
+        border: 1px solid transparent;
         box-shadow: 0 1px 3px 0 #636569;
-        margin-bottom: 3%;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease; 
     }
     .next-button{
         font-family: $text-font;
-        margin-top: 5%;
-        margin-bottom: 20%;
         background-image: $primary-button-red;
+        max-width: 700px;
     }
 }
 /* Stripe */
@@ -679,6 +742,7 @@ nav{
     background-color: white;
     height: 50px;
     width: 100%;
+    max-width: 700px;
     margin-bottom: 5%;
     padding: 1.0rem 1.2rem;
     border-radius: 4px;
@@ -720,14 +784,33 @@ nav{
 
 .confetti-text{
     margin-bottom: 5%;
+    text-align: center;
     &__button{
         margin-top: 3%;
     }
 }
 
-.confetti-container{
-    padding-top: 10%;
-    margin-bottom: 10%;
+// Articles
+.articles{
+    .card{
+        max-width: 800px;
+        div{
+            font-style: $text-font;
+        }
+    }
+    img{
+        max-width: 600px;
+    }
+    a{
+        text-decoration: none; 
+        color: black;
+    }
+}
+
+.author{
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #636569;
 }
 
 // Footer

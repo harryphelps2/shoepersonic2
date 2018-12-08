@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 {% block page_title %}Basket{% endblock %}
-{% block page_header %}Shopping Basket{% endblock %}
 {% block content %}
 <div class="basket">
-    <h2>Basket</h2>
+    <h2>Your Shopping Basket:</h2>
     {% for item in basket_items  %}
-    <div class="basket__row">
-        <div class="basket__image">
-            <img src="../../media/{{ item.product.primary_image }}" alt="{{ print.title }}" class="img-thumbnail">
+    <div class="basket__row m-3 p-1">
+        <div class="basket__row__image">
+            <img src="/media/{{ item.product.primary_image }}" alt="{{ print.title }}" class="img-thumbnail">
         </div>
-        <div class="basket__adjust">
-            <h5>{{ item.product.name }} £{{ item.product.price }}</h5>
-            <div class="basket__adjust__quantity">
+        <div class="basket__row__details">
+            <h3>{{ item.product.brand }} {{ item.product.name }} £{{ item.product.price }}</h3>
+            <p class="basket__adjust__size ml-1">Size: {{ item.size }}</p>
+        </div>
+        <div class="basket__row__adjust my-2 ml-2">
+            <div class="basket__row__adjust__quantity mb-1">
                 <button class="btn btn-secondary btn-sm minus_update">
                     <i class="fas fa-minus"></i>
                 </button>
@@ -20,23 +22,24 @@
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
-            <p class="basket__adjust__size">Size: {{ item.size }}</p>
-            <form id="adjust-basket-form" action="{% url 'adjust_basket' item.product.id item.size %}" method="post">
-                {% csrf_token %}
-                <button form="adjust-basket-form" class="btn btn-secondary adjust-basket-form basket__adjust__update-button" value={{ item.quantity }} type="submit" name="new_quantity">Update Quantity</button>
-            </form>
+            <div class="basket__row__adjust__adjust-button">
+                <form id="adjust-basket-form" action="{% url 'adjust_basket' item.product.id item.size %}" method="post">
+                    {% csrf_token %}
+                    <button form="adjust-basket-form" class="btn btn-secondary adjust-basket-form basket__adjust__update-button" value={{ item.quantity }} type="submit" name="new_quantity">Update Quantity</button>
+                </form>
+            </div>
         </div>
     </div>
     {% endfor %}
     {% if total == 0 %}
         <div class="basket-total">
-            <h3>You don't have anything in your basket</h3>
+            <h2>You don't have anything in your basket</h2>
             <a class="btn btn-lg btn-block btn-danger" href="{% url 'all_shoes' %}">Shop now</a>
         </div>
         {% else %}
-        <div class="basket-total">
-            <h3>Total: £{{total}}</h3>
-            <a class="btn btn-lg btn-block btn-danger basket__checkout-button" href="{% url 'contact_details' %}">Go to Checkout</a>
+        <div class="basket-total my-4 mx-3">
+            <h2>Total: £{{total}}</h2>
+            <a class="btn btn-lg btn-block btn-danger basket__checkout-button mt-4" href="{% url 'contact_details' %}">Go to Checkout</a>
         </div>
         {% endif %}
 </div>

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block page_title %}Do I need spikes? - running with spikes | shoepersonic{% endblock %}
+{% block page_description %}What are the advantages of running cross country with spikes.{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="p-2">
+        <h1>Do I need spikes?</h1>
+        <h2>Veteran runner Bill Phelps tries out spikes for the first time on a tough, hilly cross country race.
+            Find out how he got on.
+        </h2>
+        <h3 class="pt-3">Introduction</h3>
+        <p>
+            If, like me, you thought that running spikes were solely the preserve of ‘proper grown up runners’ 
+            then think again. I’m here to tell you that spikes mean much more than speed and that as an overall 
+            package, they make obvious sense.
+        </p>
+        <h3 class="pt-3">The Race</h3>
+        <p>
+            I tried out spikes (a brand new paid of <a href="{% url 'shoe_detail' 4 %}">Adidas XCS</a>, courtesy of the great team at 
+            Shoepersonic)  for the first time, over a 5.3 mile cross country (XC) course at Oxleas Wood 
+            near Eltham in South London. 
+        </p>
+        <p>
+            This is one of the six or seven XC races forming the annual Kent Fitness League and these are 
+            always enjoyable outings, well marshalled and covering a wide variety of ground conditions. Of 
+            course, if autumn has done its job properly, mud, leaves and puddles are likely to be a 
+            commonly recurring theme and Oxleas was true to form in most respects.
+        </p>
+        <p>
+            As a 58 year old runner, it’s fair to say that I hail from the ‘mature’ end of the spectrum and 
+            that these days I’m more built for comfort rather than speed. Yes, folks, my best times are behind 
+            me but after trying out spikes, I hope like me, you’ll see that there’s more to life than dashing 
+            round the course in a blur. 
+        </p>
+        <h2 class="pt-3">The Advantages of Spikes:</h2>
+        <p>
+            So, what’s to like? Well, for me, it translates in to three things:
+        </p>
+        <h3 class="pt-3">1. Feedback</h3>
+        <p>
+            The first thing is contact. Spikes put you in touch with the ground in a way that simply eludes 
+            conventional running shoes. It’s like you’ve just put your suspension in to ‘sport’ mode. Yes, 
+            the ride isn’t as comfortable, but the pay back is that you know exactly what the ground’s doing 
+            under your feet. If you’re still with me motoring analogy-wise, it’s like swapping cross ply 
+            tyres for low profile radials. (Ok, maybe that takes some of you back just a little too far….)
+        </p>
+        <h3 class="pt-3">2. Cornering</h3>
+        <p>
+            Secondly, cornering. This is a big one for me. Unsurprisingly, spikes provide a level of lateral 
+            grip far in excess of anything even a good trail shoe can muster. This translates in to confidence, 
+            on both corners and in ruts, where I have lost count of the number of times previously that 
+            I’ve slithered sideways, inwards and downwards to the bottom of a muddy trail. You start out 
+            gingerly, not trusting that the spikes will pull you round, but by the race halfway point, trust 
+            me, you’re really starting to enjoy the twisty bits like never before.
+        </p>
+        <h3 class="pt-3">3. Safety and Security</h3>
+        <p>
+            Finally, safety, and security. If like me, you’re a tad nervous on the downhills, then fret no 
+            further. Spikes love downhill work. With the weight transferred to the front, the spikes can 
+            really dig in meaning you can tackle gradients with far greater aplomb - and of course, 
+            speed. This also works for up-hills too – though speed here seems curiously less of a problem for me!
+        </p>
+        <p>
+            Of course, spikes can’t defy the laws of physics, deep mud will trouble them like any other shoe, 
+            but remember, you can experiment with longer spike lengths and trust that, even when things get 
+            really gloopy, if there’s grip to be found, they’ll find it.
+        </p>
+        <h3 class="pt-3">Summary</h3>
+        <p>
+            So, on balance, for cross country work, I’m a spikes convert. With better feel, 
+            vastly improved cornering and far greater confidence on the downhills spikes add up to a 
+            great package that will undoubtedly enhance your race enjoyment and, of course, your speed.
+        </p>
+        <a class="btn button btn-lg btn-danger btn-block" href="{% url 'shoe_detail' 4 %}">Shop the Adidas XCS</a>
+    </div>
+    <div class="author my-3">
+        <div class="p-3">
+            <img src="" alt="">
+            <h2>Bill Phelps</h2>
+            <p>Bill got into running when he used to give lifts to his sons at the Bluewater 4km timetrial
+                every Saturday. One week he thought "I'll give this a go!". He ran his first 4km race that 
+                day and never looked back! 
+            </p>
+            <p>
+                He now races regularly throughout the year and trains three times a week.
+            </p>
+            <p><strong>Favourite Race:</strong> Bewl 15</p>
+            <p><strong>Best Running Moment:</strong> Running round Rosemullion Head in Cornwall with the morning sun
+                rise over the sea.
+            </p>
+            <p><strong>Worst Running Moment:</strong> Parliament Hill Nationals - mud, exhaustion and cold and the tea shop was closed.</p>
+            <p><strong>Favourite session:</strong> 12 miler long run round Keston.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

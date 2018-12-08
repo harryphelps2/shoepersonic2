@@ -1,88 +1,68 @@
 {% extends 'base.html' %}
+{% block page_title %}{{ shoe.brand }} {{ shoe.name }} - cross country spikes | Shoepersonic{% endblock %}
+{% block page_description %}{{ shoe.brand }} cross country spikes reviewed and compared.{% endblock %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid shoe-detail">
     <h1 class="pt-3 shoe-detail__title">{{ shoe.brand }} {{ shoe.name }}</h1>
-    <div class="slider shoe-detail__slider">
+    <div class="slider shoe-detail__slider m-3">
         <div><img class="shoe-detail__image" src="/media/{{ shoe.primary_image }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
         {% for image in images %}
         <div><img class="shoe-detail__image" src="/media/{{ image.image_url }}" alt="{{ shoe.brand }} {{ shoe.name }}"></div>
         {% endfor %}
     </div>
-    <div class="add-to-basket">
-        <div class="price-and-quantity-container">
-            <div class="price-and-quantity-container__price">
-                <h3>£{{ shoe.price }}</h3>
-            </div>
-            <div class="price-and-quantity-container__quantity-chooser">
-                <button class="minus" disabled>
-                    <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity" name="quantity">1</span>
-                <button class="plus">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-        </div>
-        <div class="input-group size-container">
-            <form id="basketform" class="size-container__selector-form" action="{% url 'add_to_basket' shoe.id %}" method="post">
-                {% csrf_token %}
-                <div class="input-group-prepend size-chooser">
-                    <label class="input-group-text" for="size-chooser">Size</label>
-                    <select form="basketform" required name="size" class="custom-select" id="size-chooser">
-                        {% for shoe_stock in stock_level %}
-                        <option value="{{ shoe_stock.size }}" {% if shoe == current_shoe %}selected{% endif %} {% if shoe_stock.stock == 0 %} disabled {% endif %}>{{ shoe_stock.size }} - {{ shoe_stock.stock }} left</option>
-                        {% endfor %}
-                    </select>
+    <div>
+        <div class="add-to-basket m-4">
+            <div class="price-and-quantity-container">
+                <div class="price-and-quantity-container__price">
+                    <h3>£{{ shoe.price }}</h3>
                 </div>
-                <button class="btn btn-primary btn-lg btn-danger btn-block add-to-basket-button" form="basketform" type="submit" value="1" name="quantity">Add to Basket</button>
-            </form>
+                <div class="price-and-quantity-container__quantity-chooser">
+                    <button class="minus" disabled>
+                        <i class="fas fa-minus m-auto"></i>
+                    </button>
+                    <span class="quantity" name="quantity">1</span>
+                    <button class="plus">
+                        <i class="fas fa-plus m-auto"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="input-group size-container">
+                <form id="basketform" class="size-container__selector-form" action="{% url 'add_to_basket' shoe.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group-prepend size-chooser">
+                        <label class="input-group-text" for="size-chooser">Size</label>
+                        <select form="basketform" required name="size" class="custom-select" id="size-chooser">
+                            {% for shoe_stock in stock_level %}
+                            <option value="{{ shoe_stock.size }}" {% if shoe == current_shoe %}selected{% endif %} {% if shoe_stock.stock == 0 %} disabled {% endif %}>{{ shoe_stock.size }} - {{ shoe_stock.stock }} pairs left</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-danger btn-block add-to-basket-button" form="basketform" type="submit" value="1" name="quantity">Add to Basket</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="px-2">
-        <h3>What we think</h3>                
-        <p>We took all 5 shoes to Parliament Hill and made a video complete with epic montage. You can find out how we got on <a href="{% url 'our_reviews' %}">here</a>.</p>
-        <div class="shoe-details__stats">
-            <h4>Stats</h4> 
+        <div class="shoe-detail__stats m-4">
+            <h2>Performance on Test</h2> 
             <ul>
                 <li>Weight: {{ shoe.weight }} g ({{ shoe.weight_ranking }}/5 in test)</li>
                 <li>Wet-weight: {{ shoe.wet_weight }} g ({{ shoe.wet_weight_ranking }}/5 in test)</li>
                 <li>Fit status: {{ shoe.fit_descriptor }}</li> 
                 <li>Supportive-ranking: {{ shoe.support_ranking }}/5 in test</li>
                 <li>Includes {{ shoe.spikes_included }}</li>
-            </ul>               
-            <p>{{ shoe.description|safe }}</p>
+            </ul>
+            <h3>We took all 5 shoes to Parliament Hill in London and made a video complete with epic montage. You can find out how we got on <a href="{% url 'our_reviews' %}">here</a>.</h3>
         </div>
     </div>
-    {% if not reviews and not user.is_authenticated %}
+    <div class="shoe-detail__review m-2">
+        <h2>What we think</h2>                
+        {{ shoe.description|safe }}
 
-    {% elif not reviews and user.is_authenticated %}
-        <div class="customer-review">
-            <h3 class="customer-review__title">Tell us what you think</h3>
-            <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
-                {% csrf_token %}
-                <div>
-                    {{ comment_form|crispy }}
-                    <button type="submit" class="btn btn-block btn-secondary add-review">Add comment</button>
-                </div>
-            </form>
-        </div>
-    {% elif reviews and not user.is_authenticated %}
-    <div class="customer-review">
-        <h3 class="customer-review__title">What do you think?</h3>
-        <h4>Create account to have your say <a href="{% url 'register' %}">here</a>.</h4>
-        <ul class="customer-review__list">
-            {% for review in reviews %}
-            <li class="card customer-review__list-item">
-                <h4>{{ review.user }} commented on {{ review.date }}</h4>
-                <p>{{ review.customer_review }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% else %}
-        <div class="customer-review">
+        {% if not reviews and not user.is_authenticated %}
+        
+        {% elif not reviews and user.is_authenticated %}
+        <div class="customer-review mb-3">
             <h3 class="customer-review__title">Tell us what you think</h3>
             <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
                 {% csrf_token %}
@@ -91,46 +71,71 @@
                     <button type="submit" class="btn btn-block btn-secondary btn-success add-review">Add comment</button>
                 </div>
             </form>
+        </div>
+        {% elif reviews and not user.is_authenticated %}
+        <div class="customer-review mb-3">
+            <h3 class="customer-review__title">What do you think?</h3>
+            <h4>Create account to have your say <a href="{% url 'register' %}">here</a>.</h4>
             <ul class="customer-review__list">
                 {% for review in reviews %}
-                    <li class="card customer-review__list-item">
-                        <h4>{{ review.user }} commented on {{ review.date }}</h4>
-                        <p>{{ review.customer_review }}</p>
-                    </li>
-                    {% if review.user == user %}
-                    <div>
-                        <button type="button" class="btn btn-secondary btn-info edit-comment-button" data-toggle="modal" data-target="#editComment-{{ review.id }}" data-whatever="@mdo">Edit Comment</button>
-                        <a class="btn btn-secondary btn-danger delete-comment-button" href="{% url 'delete_comment_for_shoe' shoe.id review.id %}">Delete Comment</a>
-                    </div>
-                    <div class="modal fade" id="editComment-{{ review.id }}" tabindex="-1" role="dialog" aria-labelledby="editCommentLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editCommentLabel">Edit Comment</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="edit-comment-{{ review.id }}" name="edit-comment-{{ review.id }}" action="{% url 'edit_comment_for_shoe' shoe_id=shoe.id comment_id=review.id %}" method="post">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Comment:</label>
-                                            <textarea class="form-control" form="edit-comment-{{ review.id }}" name="updated-comment" id="message-text">{{ review.customer_review }}</textarea>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" form="edit-comment-{{ review.id }}" class="btn btn-secondary btn-success">Update Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
+                <li class="card customer-review__list-item">
+                    <h4>{{ review.user }} commented on {{ review.date }}</h4>
+                    <p>{{ review.customer_review }}</p>
+                </li>
                 {% endfor %}
             </ul>
         </div>
-    {% endif %}
+        {% else %}
+            <div class="customer-review mb-3">
+                <h3 class="customer-review__title">Tell us what you think</h3>
+                <form class="customer-review__form" id="add-comment" name="add-comment" action="{% url 'add_comment_for_shoe' shoe.id %}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        {{ comment_form|crispy }}
+                        <button type="submit" class="btn btn-block btn-secondary btn-success add-review">Add comment</button>
+                    </div>
+                </form>
+                <ul class="customer-review__list">
+                    {% for review in reviews %}
+                        <li class="card customer-review__list-item">
+                            <h4>{{ review.user }} commented on {{ review.date }}</h4>
+                            <p>{{ review.customer_review }}</p>
+                        </li>
+                        {% if review.user == user %}
+                        <div>
+                            <button type="button" class="btn btn-secondary btn-info edit-comment-button" data-toggle="modal" data-target="#editComment-{{ review.id }}" data-whatever="@mdo">Edit Comment</button>
+                            <a class="btn btn-secondary btn-danger delete-comment-button" href="{% url 'delete_comment_for_shoe' shoe.id review.id %}">Delete Comment</a>
+                        </div>
+                        <div class="modal fade" id="editComment-{{ review.id }}" tabindex="-1" role="dialog" aria-labelledby="editCommentLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editCommentLabel">Edit Comment</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="edit-comment-{{ review.id }}" name="edit-comment-{{ review.id }}" action="{% url 'edit_comment_for_shoe' shoe_id=shoe.id comment_id=review.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Comment:</label>
+                                                <textarea class="form-control" form="edit-comment-{{ review.id }}" name="updated-comment" id="message-text">{{ review.customer_review }}</textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" form="edit-comment-{{ review.id }}" class="btn btn-secondary btn-success">Update Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>               
 </div>
 {% endblock %}
