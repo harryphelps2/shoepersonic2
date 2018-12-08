@@ -23,6 +23,6 @@ def basket_contents(request):
         #total += info['quantity'] * product.price
 
         product_count += quantity
-        basket_items.append({'id': product.id, 'quantity': quantity, 'product': product, 'size': size})
+        basket_items.append({'id': product.id, 'quantity': quantity, 'product': product, 'size': size })
     
     return {'basket_items': basket_items, 'total': total, 'product_count': product_count}

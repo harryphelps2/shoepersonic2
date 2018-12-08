@@ -39,7 +39,7 @@ h5 {
   font-weight: 600;
 }
 
-p, li, a {
+p, li, a, td {
   font-family: "Open Sans", sans-serif;
 }
 
@@ -49,6 +49,43 @@ textarea {
   height: 5rem;
   border-color: black;
   border-radius: 0.2rem;
+}
+
+input {
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #636569;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+  margin-bottom: 2%;
+}
+
+label {
+  display: None;
+}
+
+.checkbox {
+  display: block;
+}
+
+.profile input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.5%;
+}
+.profile label {
+  display: inline;
+}
+.profile .checkboxinput {
+  width: 1rem;
+  box-shadow: None;
+}
+.profile button {
+  max-width: 500px;
+}
+
+.help-block {
+  display: none;
 }
 
 /* Navbar */
@@ -65,25 +102,28 @@ nav {
 }
 .nav-dropdown__link {
   font-family: "Open Sans", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: white;
   text-decoration: none;
+  transition: 0.5s;
 }
 .nav-dropdown__link:hover {
   font-style: italic;
   text-decoration: none;
-  transition: 0.3s;
+  font-size: 1.8rem;
+  transition: 0.5s;
   color: white;
 }
 .nav-dropdown__basket {
   font-style: italic;
   color: white;
   text-decoration: none;
+  transition: 0.5s;
 }
 .nav-dropdown__basket:hover {
   font-size: 1.6rem;
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.5s;
   color: white;
 }
 
@@ -112,8 +152,8 @@ nav {
     display: inline;
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
   .nav-dropdown__link:hover {
     font-style: italic;
@@ -173,7 +213,7 @@ nav {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-weight: bold;
-  font-size: 2.6rem;
+  font-size: 2.7rem;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -227,6 +267,11 @@ nav {
   margin-bottom: 1%;
   font-size: 2.5rem;
   text-align: center;
+  transition: 0.5s;
+}
+.front-page-info__item i:hover {
+  font-size: 3.5rem;
+  transition: 0.5s;
 }
 
 @media (min-width: 576px) {
@@ -238,10 +283,6 @@ nav {
     width: 100%;
   }
 
-  .front-page-info {
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
   .front-page-info__item {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
@@ -254,8 +295,13 @@ nav {
   .front-page-info__item i {
     margin-right: 5%;
     margin-bottom: 5%;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     text-align: center;
+    transition: 0.5s;
+  }
+  .front-page-info__item i:hover {
+    font-size: 5.5rem;
+    transition: 0.5s;
   }
 }
 /* About us */
@@ -271,12 +317,22 @@ nav {
 
 /* Accounts */
 .login-form {
-  padding-top: 5%;
+  max-width: 500px;
 }
-.login-form__button {
-  margin-top: 3%;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
+.login-form input {
+  padding: 1%;
+  width: 100%;
+}
+
+.reset-password {
+  max-width: 600px;
+}
+.reset-password label {
+  display: block;
+}
+.reset-password input {
+  padding: 1%;
+  width: 100%;
 }
 
 .password-reset-sent__heading {
@@ -294,10 +350,17 @@ nav {
 }
 
 .password-reset-confirm-form {
-  margin: 5%;
+  max-width: 500px;
 }
-.password-reset-confirm-form button {
-  margin-top: 3%;
+.password-reset-confirm-form label {
+  display: block;
+}
+.password-reset-confirm-form input {
+  width: 100%;
+  padding: 1%;
+}
+.password-reset-confirm-form li {
+  font-size: 0.75rem;
 }
 
 .password-reset-complete {
@@ -312,15 +375,6 @@ nav {
 }
 
 /* All Shoes Page */
-.all-shoes-container {
-  padding: 2%;
-}
-
-.shoe-card {
-  padding: 1%;
-  margin: 2%;
-}
-
 /* Shoe Detail Page */
 .shoe-detail {
   display: block;
@@ -336,12 +390,11 @@ nav {
   line-height: 1.2;
 }
 .shoe-detail__slider {
-  margin-top: 4%;
+  max-width: 1000px;
 }
-@media (min-width: 576px) {
+@media (min-width: 1000px) {
   .shoe-detail__slider {
-    display: bblock;
-    width: 100%;
+    display: inline-block;
   }
 }
 .shoe-detail__image {
@@ -353,17 +406,29 @@ nav {
     width: 100%;
   }
 }
+.shoe-detail__stats {
+  max-width: 500px;
+}
+@media (min-width: 576px) {
+  .shoe-detail__stats {
+    display: inline-block;
+    vertical-align: top;
+    align: left;
+  }
+}
+.shoe-detail__review {
+  max-width: 1000px;
+}
 
 .add-to-basket {
   display: block;
   width: 100%;
-  margin: 5%;
+  max-width: 400px;
 }
 @media (min-width: 576px) {
   .add-to-basket {
     display: inline-block;
-    margin: 0;
-    padding-left: 10%;
+    vertical-align: top;
   }
 }
 
@@ -486,11 +551,11 @@ nav {
   height: auto;
   width: 10%;
 }
+.profile__previous-orders {
+  max-width: 600px;
+}
 
 /* Basket */
-.basket {
-  margin: 2%;
-}
 .basket h2 {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
@@ -500,77 +565,72 @@ nav {
   line-height: 1.2;
 }
 .basket__row {
-  display: block;
-  margin-top: 5%;
-  padding: 2%;
-  border: 1px solid dimgray;
+  display: flex-nowrap;
+  max-width: 1000px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #636569;
 }
-.basket__image {
+.basket__row__image {
   display: inline-block;
   vertical-align: top;
   width: 8rem;
 }
-.basket__adjust {
+.basket__row__details {
   display: inline-block;
-  width: 60%;
+  width: 50%;
 }
-.basket__adjust h5 {
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
+.basket__row__adjust {
+  display: inline-block;
+  width: 100%;
+  max-width: 500px;
 }
-.basket__adjust__quantity {
+.basket__row__adjust__quantity {
   display: inline-block;
   width: 40%;
-  margin-top: 3%;
+  vertical-align: bottom;
 }
-.basket__adjust__quantity button {
-  height: 1.5rem;
-  width: 1.5rem;
+.basket__row__adjust__quantity button {
+  height: 2.5rem;
+  width: 2.5rem;
   padding-bottom: 0.1rem;
   color: black;
   font-family: "Open Sans", sans-serif;
-  vertical-align: top;
+  vertical-align: bottom;
 }
-.basket__adjust__quantity button i {
+.basket__row__adjust__quantity button i {
   color: white;
 }
-.basket__adjust__quantity .new_quantity {
+.basket__row__adjust__quantity .new_quantity {
+  font-weight: 600;
+  font-size: 1.5rem;
+  vertical-align: bottom;
+}
+.basket__row__adjust__adjust-button {
+  display: inline-block;
+  width: 50%;
   font-weight: 600;
   font-size: 1.5rem;
   vertical-align: top;
 }
-.basket__adjust__size {
-  display: inline-block;
-  width: 45%;
-  font-weight: 500;
-  font-size: 1.2rem;
-}
-.basket__adjust__update-button {
-  margin-top: 5%;
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.2rem;
-}
 .basket__checkout-button {
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.basket-total {
-  margin-top: 10%;
+  max-width: 1000px;
 }
 
 .checkout-basket {
   margin: 5%;
   font-family: "Open Sans", sans-serif;
+  max-width: 700px;
+}
+.checkout-basket ul {
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 #636569;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
 }
 .checkout-basket__total {
   font-size: 1.3rem;
   font-weight: 900;
-}
-
-.contact-details {
-  margin: 5%;
 }
 
 .checkout-nav {
@@ -586,9 +646,13 @@ nav {
 
 @media (min-width: 576px) {
   .checkout-nav a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
+.nav-link {
+  padding: 0;
+}
+
 .order-details-form {
   margin: 5%;
 }
@@ -603,15 +667,15 @@ nav {
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: 4px;
-  border: 1px solid;
+  border: 1px solid transparent;
   box-shadow: 0 1px 3px 0 #636569;
-  margin-bottom: 3%;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
 }
 .order-details-form .next-button {
   font-family: "Open Sans", sans-serif;
-  margin-top: 5%;
-  margin-bottom: 20%;
   background-image: linear-gradient(#f60606, #ff8383);
+  max-width: 700px;
 }
 
 /* Stripe */
@@ -626,6 +690,7 @@ nav {
   background-color: white;
   height: 50px;
   width: 100%;
+  max-width: 700px;
   margin-bottom: 5%;
   padding: 1rem 1.2rem;
   border-radius: 4px;
@@ -666,14 +731,30 @@ nav {
 
 .confetti-text {
   margin-bottom: 5%;
+  text-align: center;
 }
 .confetti-text__button {
   margin-top: 3%;
 }
 
-.confetti-container {
-  padding-top: 10%;
-  margin-bottom: 10%;
+.articles .card {
+  max-width: 800px;
+}
+.articles .card div {
+  font-style: "Open Sans", sans-serif;
+}
+.articles img {
+  max-width: 600px;
+}
+.articles a {
+  text-decoration: none;
+  color: black;
+}
+
+.author {
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #636569;
 }
 
 .footer {

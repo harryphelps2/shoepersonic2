@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block page_title %}running advice - running faster | shoepersonic{% endblock %}
+{% block page_description %}Articles and advice on kit, nutrition, books and running faster.{% endblock %}
+{% block content %}
+<div class="container-fluid articles">
+    <h1>Welcome to the Hangar</h1>
+    <p>A place for runners to come and get faster.</p>
+
+    <div class="card text-center my-3">
+        <div class="card-header bg-secondary text-light">
+            Featured Article
+        </div>
+        <a href="{% url 'do_you_need_spikes' %}">
+            <div class="card-body">
+                <img class="card-img-top rounded" src="/media/adidas_xcs_black_mens_com_yfBiIsT.jpg" alt="Card image cap">
+                <h2 class="card-title mt-2">Do I need cross country spikes?</h2>
+                <p class="card-text">Cross country spike rookie Bill Phelps takes us through his first
+                    race experience with his new Adidas XCS spikes.
+                </p>
+            </div>
+        </a>
+        <div class="card-footer bg-secondary text-light">
+                Bill Phelps
+        </div>
+    </div>
+    <p>More articles coming soon...</p>
+</div>
+
+{% endblock %}

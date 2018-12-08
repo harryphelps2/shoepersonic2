@@ -1,0 +1,38 @@
+{% extends "base.html" %} 
+{% block page_title %}Profile{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <div class="profile mt-3">
+        <h1>Profile: {{ user.first_name }} {{ user.last_name }}</h1>
+        <form class="ml-3 mb-2" method="post" name="edit-profile" id="edit-profile" action="{% url 'edit_profile' %}">
+            {% csrf_token %}
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            <a href="{% url 'logout'%}">Logout</a>
+        </form>
+        <button  class="btn btn-danger btn-primary btn-lg btn-block ml-3 mb-3" type="submit" form="edit-profile">Save changes</button>
+    </div>
+    <div class="profile__previous-orders">
+        <h3 class="mb-2 mt-5">Previous Orders:</h3>
+        <table class="table table-striped table-hover m-auto">
+            <tr>
+                <th scope="col">Quantity</th>
+                <th scope="col">Product</th>
+                <th scope="col">Size</th>
+                <th scope="col">Return</th>
+            </tr>
+            {% for order_detail in past_order_details %}
+            <tr>
+                <td scope="col">{{ order_detail.quantity }}</td>
+                <td scope="col">{{ order_detail.product }}</td>
+                <td scope="col">{{ order_detail.size }}</td>
+                <td scope="col"><a class="btn btn-info" href="{% url 'delivery_and_returns' %}">Return</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+</div>
+{% endblock %}
