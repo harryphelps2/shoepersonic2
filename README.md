@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/harryphelps2/shoepersonic2.svg?branch=master)](https://travis-ci.org/harryphelps2/shoepersonic2)
 
-Link to live site: https://recipes-hp.herokuapp.com/
-
-
+Link to live site: https://shoepersonic2.herokuapp.com/
 
 ## Business Objectives
 
@@ -12,7 +10,7 @@ Sell shoes to people like Derek (see below).
 
 ## Customer Profile, Derek from London:
 
-Grew up London, enjoys running as a project on the side to stay healthy, relieve stress and compete. Dave was never a talented athlete but he is persistent and enjoys training to compete in races. He did a degree in mechanical engineering and ran in a club at school and tried out numerous individual sports at university. David struggles with confidence around other men and women and enjoys running. He likes feeling part of a club but struggles to break through into the social side of things. He really wants to be invited to the party but feels like he is never engaging enough or gregarious enough break into the cool crowd. 
+Grew up London, enjoys running as a project on the side to stay healthy, relieve stress and compete. Derek was never a talented athlete but he is persistent and enjoys training to compete in races. He did a degree in mechanical engineering and ran in a club at school and tried out numerous individual sports at university. David struggles with confidence around other men and women and enjoys running. He likes feeling part of a club but struggles to break through into the social side of things. He really wants to be invited to the party but feels like he is never engaging enough or gregarious enough break into the cool crowd. 
 
 He doesn’t mind spending money in his hobby but is time poor. He makes decisions quickly. 
 
@@ -42,6 +40,10 @@ The user should be able to:
 
 7. Be able to add details to save for next time.
 
+8. Access detailed reviews of the shoes before making a decision.
+
+9. See the shoes in action.
+
 The shoe owner should be able to:
 
 1. Enforce the terms and conditions in order for the customer to make a purchase
@@ -53,52 +55,76 @@ The shoe owner should be able to:
 
 ### Views
 
-The site has ben designed for mobile first
+The site has ben designed for mobile first. 
 
-1. Base page, navbar and footer - The base page allows the site designer to change the title page and meta description with a block tags to match choosen keywords and improve SEO. The navbar collapses at smaller screen sizes.
+1. Base page, navbar and footer - The base page allows the site designer to change the title page and meta description with a block tags to match choosen keywords and improve SEO. The navbar collapses at smaller screen sizes. The footer contains social media links that highlight in the colour of the brand when hovered over.
 
 2. Landing page - A big hero image, with the brand and strapline to welcome the customer in. Scrolling down the customer can sees a summary of the what the site does. The hero image has a call-to-action 'SHOP NOW' red button to invite the customer to view the product page. The font sizes adjust for larger screens.
 
 3. Product Page - Clicking through to the product page the customer can see all 5 shoes sold with a summary of their features. The number of cards per row adjusts with screen size. 
 
-4. Shoe detail page - This page has a responsive touch screen compatible carousel of product images and the product name. The customer can select a size from the drop down which tells them how many of each shoe is left. The customer can also increase and decrease the quantity which uses jquery to update the quantity number when the button is clicked. The user then clicks add to basket and the size, quantity and product are added to the session storage.
+4. Shoe detail page - This page has a responsive touch screen compatible carousel of product images and the product name. The customer can select a size from the drop down which tells them how many of each shoe is left. The customer can also increase and decrease the quantity which uses jquery to update the quantity number in the DOM when the button is clicked. The user then clicks add to basket and the size, quantity and product are added to the session storage.
 
 5. Basket - The Basket page shows all the products added so far and their total. The customer can update the quantity of the shoe by selecting the pluses and minuses. (BUG: If there is more than one pair of shoes in the basket the quantity updater will always update the top one. There wasn't time to fix this bug. It is assumed most customers will only purchase the one pair of shoes but the bug will get fixed early next year.) The customer selects checkout and goes to the contact details page.
 
-4. Contact details
+6. Contact details - The user has to add an email so we can contact them about the order and can also add a running club. If they do 5% of the profits from their purchase will be donated to that running club.
 
-5. Delivery Details
+7. Delivery Details - User adds address to send shoes to.
 
-6. Card details
+8. Card details - User uses stripe input to send card details. The site utilises Stripes capt and auth functionality to reserve the funds on the account but not take them. This gives the owner a chance to check they are in stock before accepting the order and taking the money.
 
-7. Order confirmation
+9. Order confirmation - The customer gets and order confirmation number and is asked if they want to create a password to save details for next time. The stock number of the shoe and size decrease by 1.
 
-8. Review page with comparative shoe review
+10. Review page with comparative shoe review - The user can see all 5 shoes compard with an embedded youtube video review with montage.
 
-9. The Hangar (blog page with links to articles)
+11. The Hangar (blog page with links to articles) - The user can browse articles about running.
 
+12. Delivery and Returns information
+
+13. Profile page - list of previous orders and current profile information.
 
 ### Data
 
+1. Shoe - A shoe is a brand and model of shoe including various attributes such as weight and colour. Each shoe includes a primary image.
 
+2. Stock - Each shoe has a stock entry for each size.
+
+3. Order - And order is an address and email of a customer who has made an order
+
+4. OrdelLineItem - The order is related to the shoes by an order line item which records the Order number, the size and the quantity.
+
+5. Product Images - Shoes can have multiple images to display in the shoe detail carousel.
+
+6. Profile - Each user has an attached profile with more details such as address and running club and marketing opt-in preference.
 
 ### Functionality
 
-1. Add to basket
+1. Add to basket - Add quantity, product and size to basket. Was quite challenging to add the size to the basket. In the end the size was concatenated with the product id into one field and split when the basket had to be shown.
 
-2. Adjust basket
+2. Adjust basket - change quantity of product in basket.
 
-3. 
+3. Checkout - Add order details and submit payment information to Stripe.
 
+4. Leave comment - Customer who is registered can add comments to shoe reviews and the bottom of the page.
+
+5. Edit comment - Customer who is logged in can edit their own comments.
+
+6. Delete comment - Customer who is logged in can delete their own comments.
+
+7. Edit profile - Customer can go to their profie page and edit their details.
 
 ### Features to Implement
 
-In the near future I would like to bring several features:
+In the near future I would like to bring several features online:
 
 1. Add Strava interacting intergrating my dashboard from the interactive front end project so users can add their Strava credientials and the site will summarise their progress with some interesting statistics around distance and elevation (eg: you have run 50% around the world and climbed everest 5 times)
+
 2. Add extra products like spare spikes and a bag that can be upsold in the basket page.
+
 3. Search Engine Optimization of all pages to include keywords capabable of ranking in google top 10 for every page on the site.
+
 4. Explored using a the Wagtail CMS to manage the blog but ran out of time to implement properly. Would like to migrate the blog section to Wagtail to make managing it easier.
+
 5. Add Paypal as a payment option.
 
 ## Technologies Used
@@ -116,14 +142,21 @@ In the near future I would like to bring several features:
 
 The site uses Travis integration to run a set of automated tests of the checkout happy path and the site is not deployed unless they all pass. The automated test suite can be found here: https://github.com/harryphelps2/shoepersonic2/blob/master/shop/tests.py
 
-
-
+Manually, an order can be tested to be successful by checking the payment has come through on Stripe.
 
 ## Deployment
 
 To deploy the project on Heroku:
 
+1. Add Procfile to tell Heroku about the app:
 
+    ```web: gunicorn shoepersonic2.wsgi:application```
+
+2. Add the env.py config vars to the Heroku config vars
+
+3. Connect to github repository
+
+4. Deploy
 
 To run locally:
 

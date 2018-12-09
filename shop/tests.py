@@ -74,12 +74,3 @@ class ShopTests(TestCase):
         self.assertEqual(client.session['address_line_1'], '1 happy street')
         self.assertEqual(client.session['postcode'], 'ha4 4py')
 
-        # Submit order
-        response = client.post('/checkout/submit_order',{
-            'email': client.session['email'],
-            'running_club': client.session['running_club'],
-            'first_name': client.session['first_name'],
-            'last_name': client.session['last_name'],
-            'address_line_1': client.session['address_line_1'],
-            'postcode': client.session['postcode'],
-        })
