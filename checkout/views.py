@@ -174,7 +174,7 @@ def submit_order(request):
                 fail_silently=True,
             )
             request.session['basket'] = {}
-            return redirect(reverse('order_submitted', {'order_id': order_id}))
+            return redirect(reverse('order_submitted', kwargs={'order_id': order_id}))
         else:
             messages.error(request, "Unable to take payment.")
     else:
