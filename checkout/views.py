@@ -126,6 +126,7 @@ def submit_order(request):
             order.save()
         else:
             order.save()
+        print(order.id)
         
         basket = request.session.get('basket', {})
         if not basket:
