@@ -766,6 +766,7 @@ nav {
   .author img {
     display: inline-block;
     float: left;
+    min-height: 500px;
     margin-right: 4%;
     padding-right: 2rem;
     padding-bottom: 2rem;

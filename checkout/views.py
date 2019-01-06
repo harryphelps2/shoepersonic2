@@ -123,7 +123,9 @@ def submit_order(request):
         user = request.user
         if user.is_authenticated:
             order.user = request.user
-        order.save()
+            order.save()
+        else:
+            order.save()
         
         basket = request.session.get('basket', {})
         if not basket:
