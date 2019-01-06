@@ -6,5 +6,5 @@ urlpatterns = [
     path('delivery_details', delivery_details, name="delivery_details"),
     path('card_details', card_details, name="card_details"),
     path('submit_order', submit_order, name="submit_order"),
-    re_path(r'^order_submitted/(?P<order_id>\d+)', order_submitted, name='order_submitted')
+    re_path(r'^order_submitted/(?P<order_id>\d+)/$', order_submitted, name='order_submitted')
 ]

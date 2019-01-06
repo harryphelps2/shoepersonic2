@@ -123,10 +123,9 @@ def submit_order(request):
         user = request.user
         if user.is_authenticated:
             order.user = request.user
-            order.save()
-        else:
-            order.save()
-        print(order.id)
+            order_id = order.id
+        order.save()
+        order_id = order.id
         
         basket = request.session.get('basket', {})
         if not basket:
@@ -175,7 +174,7 @@ def submit_order(request):
                 fail_silently=True,
             )
             request.session['basket'] = {}
-            return redirect(reverse('order_submitted', kwargs={'order_id': order.id}))
+            return redirect(reverse('order_submitted', {'order_id': order_id}))
         else:
             messages.error(request, "Unable to take payment.")
     else:
