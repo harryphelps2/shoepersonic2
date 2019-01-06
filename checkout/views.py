@@ -121,11 +121,11 @@ def submit_order(request):
         order = OrderForm(order_details).save(commit=False)
         order.date = timezone.now()
         user = request.user
+        order_id = order.id
         if user.is_authenticated:
             order.user = request.user
-            order_id = order.id
         order.save()
-        order_id = order.id
+        print(order_id)
         
         basket = request.session.get('basket', {})
         if not basket:
@@ -183,7 +183,6 @@ def submit_order(request):
 
 def order_submitted(request, order_id):
     """Congratulations and save details for next time"""
-    # If the user is authenticated
     profile_details = ['first_name', 'last_name', 'running_club', 'address_line_1', 'address_line_2', 'address_line_3', 'town_or_city', 'county', 'postcode']
     details_to_update = False
     marketing_opted_in = False

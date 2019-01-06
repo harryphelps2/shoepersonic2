@@ -13,15 +13,18 @@
         <p>You'll receive an email confirmation that we have received your order over the next few hours.</p>
         <p>We'll send you another email once we have accepted the order and it is on its way.</p>
         <a href="{% url 'index' %}" class="btn btn-primary btn-lg btn-block btn-success front-page-hero-text__button">Home</a>
-        {% else %}
-        <h2>Thank you!!</h2>
-        <p>We should do this again some time:</p>
-        <form method="post" id="save_new_user" action="{% url 'order_submitted' %}">
-            {% csrf_token %}
-            {{ registration_form|crispy }}
-            <button class="btn btn-primary btn-danger confetti-text__button" type="submit">Save details for next time</button>
-        </form>
-        {% endif %}
+    {% else %}
+        <div class="p-3">
+            <h2>Thank you for your purchase!!</h2>
+            <h1 class="my-5">Your order number is #{{ order_id }}</h1>
+            <p>We should do this again some time:</p>
+            <form method="post" id="save_new_user" action="{% url 'order_submitted' order_id %}">
+                {% csrf_token %}
+                {{ registration_form|crispy }}
+                <button class="btn btn-primary btn-danger confetti-text__button" type="submit">Save details for next time</button>
+            </form>
+        </div>
+    {% endif %}
     </div>
 </div>
 <script src="{% static 'js/celebration.js' %}"></script>

@@ -1,6 +1,6 @@
 //Publishable key
+// var stripe = Stripe('pk_test_oGzjqmtiyqFycxaJ7nO1aTgL');
 var stripe = Stripe('pk_live_urIIwRtSd5m2hbmLgW4uf9Y2');
-
 	
 
 var elements = stripe.elements();
