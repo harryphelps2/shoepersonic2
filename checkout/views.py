@@ -121,12 +121,10 @@ def submit_order(request):
         order = OrderForm(order_details).save(commit=False)
         order.date = timezone.now()
         user = request.user
-        order_id = order.id
         if user.is_authenticated:
             order.user = request.user
         order.save()
-        print(order_id)
-        
+        order_id = order.id       
         basket = request.session.get('basket', {})
         if not basket:
             messages.error(request, "Your basket is empty!")
