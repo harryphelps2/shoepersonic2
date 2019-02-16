@@ -18,14 +18,19 @@ class NewCustomerTest(unittest.TestCase):
         # He sees he has come to the right place as the title in the browser
         # says running shoes
         self.assertIn('Shoepersonic', self.browser.title)
-        self.fail("Finish the test")
-
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('To-Do', header_text)
+    
         # He clicks the shop now button
+        shop_now_button = self.browser.find_element_by_id('shop_now_button') 
+        shop_now_button_text = self.browser.find_element_by_id('shop_now_button').text
+        self.assertEqual(shop_now_button_text, 'Shop now') 
+        shop_now_button.click()
 
         # He is brought to a list of all the shoes
 
         # He browses the shoes and spots one he likes the look of and clicks to view details
-
+        self.fail("Finish the test")
         # He is sold, and adds the shoe to his basket
 
         # He then goes to the first checkout
