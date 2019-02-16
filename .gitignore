@@ -1,4 +1,6 @@
-env.py
-*.sqlite3
-__pycache__/
-.DS_Store
+env
+*__pycache__/
+env.py 
+db.sqlite3
+.DS_Store 
+geckodriver.log

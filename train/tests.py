@@ -3,14 +3,15 @@ from .views import decide_weekly_running_volume
 # Create your tests here.
 
 
-class TrainTests(TestCase):
-    """
-    Tests for generating a training plan.
-    """
-    def test_decide_weekly_running_volume(self):
+# class TrainTests(TestCase):
+#     """
+#     Tests for generating a training plan.
+#     """
+#     def test_decide_weekly_running_volume(self):
 
-        self.assertEqual(decide_weekly_running_volume("beginner", "5k"), 30)
-        self.assertEqual(decide_weekly_running_volume("low-key competitive", "5k"), 35)
+#         self.assertEqual(decide_weekly_running_volume("beginner", "5k"), 30)
+#         self.assertEqual(decide_weekly_running_volume("low-key competitive", "5k"), 35)
+#         self.assertEqual(decide_weekly_running_volume("low-key competitive", "10k"), 40)
     
     # def test_add_to_basket_happy_path(self):
     #     shoe = Shoe.objects.create(id=1, brand='Best Brand', name='Top Shoe', colour='Red', price=500)

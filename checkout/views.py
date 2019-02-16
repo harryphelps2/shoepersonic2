@@ -106,6 +106,7 @@ def card_details(request):
 def submit_order(request):
     """Make payment"""
     if request.method=="POST":
+        # save order
         order_details = {
             'email' : request.session.get('email', None), 
             'running_club' : request.session.get('running_club', None),
@@ -125,6 +126,7 @@ def submit_order(request):
             order.user = request.user
         order.save()
         order_id = order.id       
+        # update product
         basket = request.session.get('basket', {})
         if not basket:
             messages.error(request, "Your basket is empty!")
@@ -150,6 +152,7 @@ def submit_order(request):
             )
             order_line_item.save()
         
+        # take charge
         try:
             token = request.POST['stripeToken'] 
             charge = stripe.Charge.create(
@@ -162,6 +165,7 @@ def submit_order(request):
         except stripe.error.CardError:
             messages.error(request, "Your card was declined!")
         
+        # Confirm with customer
         if charge.paid:
             messages.success(request, "You have successfully paid!")
             send_mail(
