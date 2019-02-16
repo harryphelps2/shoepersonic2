@@ -17,7 +17,7 @@ class NewCustomerTest(unittest.TestCase):
 
         # He sees he has come to the right place as the title in the browser
         # says running shoes
-        self.assertIn('django', self.browser.title)
+        self.assertIn('Shoepersonic', self.browser.title)
         self.fail("Finish the test")
 
         # He clicks the shop now button
